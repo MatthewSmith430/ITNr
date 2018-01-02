@@ -1,0 +1,40 @@
+#' @title ITN Blockmodel & Structural Equivalence
+#'
+#' @description This function calculates block membership for ITN and strucutral equivalence between countries
+#' @param gs International Trade Network - igraph object
+#' @export
+#' @return List object containing block memebrship and strucutural equivalence matrix results
+#' @examples \dontrun{
+#' ##Create random International Trade Network (igraph object)
+#' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
+#'
+#' ##Blockmodel & structural equivalence analysis
+#' blockse<-ITNblock_se(ITN)
+#'
+#' }
+
+ITNblock_se<-function(gs){
+  gsnet<-intergraph::asNetwork(gs)
+  ec <- sna::equiv.clust(gsnet, mode="digraph")#,
+                   # plabels=sna::network.vertex.names(gsnet))
+  bm <- sna::blockmodel(gsnet, ec, h=20)
+  bm.mem<-bm$block.membership
+  igraph::V(gs)$block.membership<-bm.mem
+
+  MAT1<-igraph::as_adjacency_matrix(gs,attr="weight")
+  MAT2<-as.matrix(MAT1)
+  D<-blockmodeling::sedist(M=MAT2)
+  D<-as.matrix(D)
+
+  TAB<-igraph::get.data.frame(gs, what = "vertices")
+  NAME<-TAB$name
+  block.mem<-TAB$block.membership
+  BLOCK<-cbind(NAME,block.mem)
+  BLOCK<-as.data.frame(BLOCK)
+
+  RESULTSblockse<-list(
+    "Block.Membership"=BLOCK,
+    "Structural.Equivalence.Matrix"=D
+  )
+  return(RESULTSblockse)
+}
