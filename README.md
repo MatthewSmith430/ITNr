@@ -38,6 +38,216 @@ library(reshape2)
 library(ITNr)
 ```
 
+    ## 
+    ## Attaching package: 'igraph'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     decompose, spectrum
+
+    ## The following object is masked from 'package:base':
+    ## 
+    ##     union
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:igraph':
+    ## 
+    ##     as_data_frame, groups, union
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+    ## -------------------------------------------------------------------------
+
+    ## You have loaded plyr after dplyr - this is likely to cause problems.
+    ## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+    ## library(plyr); library(dplyr)
+
+    ## -------------------------------------------------------------------------
+
+    ## 
+    ## Attaching package: 'plyr'
+
+    ## The following objects are masked from 'package:dplyr':
+    ## 
+    ##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+    ##     summarize
+
+    ## 
+    ## Attaching package: 'GGally'
+
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     nasa
+
+    ## 
+    ## Attaching package: 'cowplot'
+
+    ## The following object is masked from 'package:ggplot2':
+    ## 
+    ##     ggsave
+
+    ## Loading required package: statnet.common
+
+    ## Loading required package: network
+
+    ## network: Classes for Relational Data
+    ## Version 1.13.0 created on 2015-08-31.
+    ## copyright (c) 2005, Carter T. Butts, University of California-Irvine
+    ##                     Mark S. Handcock, University of California -- Los Angeles
+    ##                     David R. Hunter, Penn State University
+    ##                     Martina Morris, University of Washington
+    ##                     Skye Bender-deMoll, University of Washington
+    ##  For citation information, type citation("network").
+    ##  Type help("network-package") to get started.
+
+    ## 
+    ## Attaching package: 'network'
+
+    ## The following object is masked from 'package:plyr':
+    ## 
+    ##     is.discrete
+
+    ## The following objects are masked from 'package:igraph':
+    ## 
+    ##     %c%, %s%, add.edges, add.vertices, delete.edges,
+    ##     delete.vertices, get.edge.attribute, get.edges,
+    ##     get.vertex.attribute, is.bipartite, is.directed,
+    ##     list.edge.attributes, list.vertex.attributes,
+    ##     set.edge.attribute, set.vertex.attribute
+
+    ## sna: Tools for Social Network Analysis
+    ## Version 2.4 created on 2016-07-23.
+    ## copyright (c) 2005, Carter T. Butts, University of California-Irvine
+    ##  For citation information, type citation("sna").
+    ##  Type help(package="sna") to get started.
+
+    ## 
+    ## Attaching package: 'sna'
+
+    ## The following objects are masked from 'package:igraph':
+    ## 
+    ##     betweenness, bonpow, closeness, components, degree,
+    ##     dyad.census, evcent, hierarchy, is.connected, neighborhood,
+    ##     triad.census
+
+    ## Loading required package: xergm.common
+
+    ## Loading required package: ergm
+
+    ## 
+    ## ergm: version 3.6.0, created on 2016-03-24
+    ## Copyright (c) 2016, Mark S. Handcock, University of California -- Los Angeles
+    ##                     David R. Hunter, Penn State University
+    ##                     Carter T. Butts, University of California -- Irvine
+    ##                     Steven M. Goodreau, University of Washington
+    ##                     Pavel N. Krivitsky, University of Wollongong
+    ##                     Martina Morris, University of Washington
+    ##                     with contributions from
+    ##                     Li Wang
+    ##                     Kirk Li, University of Washington
+    ##                     Skye Bender-deMoll, University of Washington
+    ## Based on "statnet" project software (statnet.org).
+    ## For license and citation information see statnet.org/attribution
+    ## or type citation("ergm").
+
+    ## NOTE: If you use custom ERGM terms based on 'ergm.userterms'
+    ## version prior to 3.1, you will need to perform a one-time update
+    ## of the package boilerplate files (the files that you did not write
+    ## or modify) from 'ergm.userterms' 3.1 or later. See
+    ## help('eut-upgrade') for instructions.
+
+    ## 
+    ## Attaching package: 'xergm.common'
+
+    ## The following object is masked from 'package:ergm':
+    ## 
+    ##     gof
+
+    ## Loading required package: btergm
+
+    ## Package:  btergm
+    ## Version:  1.7.6
+    ## Date:     2016-06-17
+    ## Authors:  Philip Leifeld (University of Glasgow)
+    ##           Skyler J. Cranmer (The Ohio State University)
+    ##           Bruce A. Desmarais (Penn State University)
+
+    ## Loading required package: tnam
+
+    ## Package:  tnam
+    ## Version:  1.6.2
+    ## Date:     2016-06-21
+    ## Authors:  Philip Leifeld (University of Glasgow)
+    ##           Skyler J. Cranmer (The Ohio State University)
+
+    ## Loading required package: rem
+
+    ## Loading required package: GERGM
+
+    ## GERGM: Generalized Exponential Random Graph Models
+    ## Version 0.10.0 created on 2016-08-06.
+    ## Advanced Development Version: Correlation Networks
+    ## copyright (c) 2016, Matthew J. Denny, Penn State University
+    ##                     James D. Wilson, University of San Francisco
+    ##                     Skyler Cranmer, Ohio State University
+    ##                     Bruce A. Desmarais, Penn State University
+    ##                     Shankar Bhamidi, University of North Carolina
+    ## Type help('gergm') to get started.
+    ## Development website: https://github.com/matthewjdenny/GERGM
+
+    ## Package:  xergm
+    ## Version:  1.7.3
+    ## Date:     2016-06-21
+    ## Authors:  Philip Leifeld (University of Glasgow)
+    ##           Skyler J. Cranmer (The Ohio State University)
+    ##           Bruce A. Desmarais (Pennsylvania State University)
+    ## 
+    ## Please cite the xergm package in your publications -- see citation("xergm").
+
+    ## Loading required package: networkDynamic
+
+    ## 
+    ## networkDynamic: version 0.9.0, created on 2016-01-12
+    ## Copyright (c) 2016, Carter T. Butts, University of California -- Irvine
+    ##                     Ayn Leslie-Cook, University of Washington
+    ##                     Pavel N. Krivitsky, University of Wollongong
+    ##                     Skye Bender-deMoll, University of Washington
+    ##                     with contributions from
+    ##                     Zack Almquist, University of California -- Irvine
+    ##                     David R. Hunter, Penn State University
+    ##                     Li Wang
+    ##                     Kirk Li, University of Washington
+    ##                     Steven M. Goodreau, University of Washington
+    ##                     Jeffrey Horner
+    ##                     Martina Morris, University of Washington
+    ## Based on "statnet" project software (statnet.org).
+    ## For license and citation information see statnet.org/attribution
+    ## or type citation("networkDynamic").
+
+    ## Loading required package: animation
+
+    ## 
+    ## ndtv: version 0.10.0, created on 2016-5-6
+    ## Copyright (c) 2016, Skye Bender-deMoll, University of Washington
+    ##                     with contributions from
+    ##                     Martina Morris, University of Washington
+    ## Based on "statnet" project software (statnet.org).
+    ## For license and citation information see statnet.org/attribution
+    ## or type citation("ndtv").
+
+    ## Loading required package: survival
+
+    ## tnet: Analysis of Weighted, Two-mode, and Longitudinal networks.
+    ## Type ?tnet for help.
+
 Loading Example Data
 --------------------
 
@@ -113,7 +323,7 @@ data("ELEnet16")
 ITNplotset(ELEnet16)
 ```
 
-![](ITNr_Markdown_files/figure-markdown_github/plotsnet-1.png)
+![](README_files/figure-markdown_github/plotsnet-1.png)
 
 ### Single Plot
 
@@ -133,31 +343,9 @@ data("ELEnet16")
 ITN_make_plot(ELEnet16,FALSE,TRUE)
 ```
 
-    ## Loading required package: network
-
-    ## network: Classes for Relational Data
-    ## Version 1.13.0 created on 2015-08-31.
-    ## copyright (c) 2005, Carter T. Butts, University of California-Irvine
-    ##                     Mark S. Handcock, University of California -- Los Angeles
-    ##                     David R. Hunter, Penn State University
-    ##                     Martina Morris, University of Washington
-    ##                     Skye Bender-deMoll, University of Washington
-    ##  For citation information, type citation("network").
-    ##  Type help("network-package") to get started.
-
-    ## Loading required package: sna
-
-    ## Loading required package: statnet.common
-
-    ## sna: Tools for Social Network Analysis
-    ## Version 2.4 created on 2016-07-23.
-    ## copyright (c) 2005, Carter T. Butts, University of California-Irvine
-    ##  For citation information, type citation("sna").
-    ##  Type help(package="sna") to get started.
-
     ## Loading required package: scales
 
-![](ITNr_Markdown_files/figure-markdown_github/plotsingle-1.png)
+![](README_files/figure-markdown_github/plotsingle-1.png)
 
 Degree Distribtuion
 -------------------
@@ -175,7 +363,7 @@ data("ELEnet16")
 ITNdegdist(ELEnet16)
 ```
 
-![](ITNr_Markdown_files/figure-markdown_github/plotpro-1.png)
+![](README_files/figure-markdown_github/plotpro-1.png)
 
 ### Histogram Plot
 
@@ -188,7 +376,7 @@ data("ELEnet16")
 ITNhistdegdist(ELEnet16)
 ```
 
-![](ITNr_Markdown_files/figure-markdown_github/plothist-1.png)
+![](README_files/figure-markdown_github/plothist-1.png)
 
 Imports Vs Exports Plot
 -----------------------
@@ -203,7 +391,7 @@ data("ELEnet16")
 ITNimvex(ELEnet16,FALSE)
 ```
 
-![](ITNr_Markdown_files/figure-markdown_github/plotImEx-1.png)
+![](README_files/figure-markdown_github/plotImEx-1.png)
 
 Node Strength - Degree Correlation Plot
 ---------------------------------------
@@ -217,7 +405,7 @@ data("ELEnet16")
 ITNcorr(ELEnet16)
 ```
 
-![](ITNr_Markdown_files/figure-markdown_github/STRDEGPLOT-1.png)
+![](README_files/figure-markdown_github/STRDEGPLOT-1.png)
 
 Network Analysis
 ----------------
@@ -339,7 +527,7 @@ data("ELEnet16")
 ITNblock_plot(ELEnet16,FALSE)
 ```
 
-![](ITNr_Markdown_files/figure-markdown_github/plotBLOCK-1.png)
+![](README_files/figure-markdown_github/plotBLOCK-1.png)
 
 Longitudinal Network Analysis
 -----------------------------
