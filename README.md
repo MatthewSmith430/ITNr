@@ -133,8 +133,6 @@ data("ELEnet16")
 ITN_make_plot(ELEnet16,FALSE,TRUE)
 ```
 
-    ## Loading required package: scales
-
 ![](README_files/figure-markdown_github/plotsingle-1.png)
 
 Degree Distribtuion
