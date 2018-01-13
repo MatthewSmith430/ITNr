@@ -31,6 +31,12 @@ ITNcorr<-function(gs){
   melted_cormat <- reshape2::melt(corr2)
   colnames(melted_cormat)<-c("Degree.Binary","Degree.Strength","Value")
 
-  ggplot2::ggplot(data = melted_cormat, ggplot2::aes(x=melted_cormat$Degree.Binary,y=melted_cormat$Degree.Strength,fill=melted_cormat$Value)) +
-    ggplot2::geom_tile()
+  ggplot2::ggplot(data = melted_cormat,
+                  ggplot2::aes(x=melted_cormat$Degree.Binary,
+                               y=melted_cormat$Degree.Strength,
+                               fill=melted_cormat$Value)) +
+    ggplot2::geom_tile()+
+    ggplot2::labs(x="Binary Degree",y="Degree Strength",
+                  title="Correlation between binary degree and degree strength",
+                  fill="Correlation Level")
 }
