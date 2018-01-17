@@ -59,7 +59,7 @@ data("ELEnetList")
 Cleaning international trade data
 ---------------------------------
 
-This function can clean a CSV file downloaded from WITS (<https://wits.worldbank.org/>) and process it into an igraph object with a number of attributes attached. This function is for import flows - it creates the international trade data based on import trade data downloaded from WITS. The attributes the function attaches include
+This function can clean a CSV file downloaded from WITS (<https://wits.worldbank.org/>) and process it into an igraph object with a number of attributes attached. This function is for import flows - it creates the international trade network based on import trade data downloaded from WITS. The attributes the function attaches include
 - Region
 - Income Level
 - GDP
