@@ -44,7 +44,7 @@ Loading Example Data
 This package comes with example International Trade Network data. The network data is trade in electrical automotive goods, where this category is defined by Amighini & Gorgoni (2014):
 Amighini, A. and Gorgoni, S. (2014) The International Reorganisation of Auto Production, The World Economy, 37(7), pp. 923–952.
 
-These ITNs are igraph objects with a number of attributes (region, GDP, GDP per captia etc). THe edge weights are proportion of global trade in the electrical automtoive goods category group. A threshold has beeen applied to the edge weights so only the most relevant edges and countries are included in th network. Therefore only edges that are at least 0.01% of global trade are included in the network.
+These ITNs are igraph objects with a number of attributes (region, GDP, GDP per captia etc). The edge weights are proportion of global trade in the electrical automtoive goods category group. A threshold has beeen applied to the edge weights so only the most relevant edges and countries are included in th network. Therefore only edges that are at least 0.01% of global trade are included in the network.
 
 The first object is a single network for 2016, the second is a list of networks for 2006 - 2016.
 
@@ -59,7 +59,7 @@ data("ELEnetList")
 Cleaning international trade data
 ---------------------------------
 
-This function can clean a CSV file downloaded from WITS (<https://wits.worldbank.org/>) and process it into an igraph object with a number of attributes attached. The attributes the function attaches include
+This function can clean a CSV file downloaded from WITS (<https://wits.worldbank.org/>) and process it into an igraph object with a number of attributes attached. This function is for import flows - it creates the international trade data based on import trade data downloaded from WITS. The attributes the function attaches include
 - Region
 - Income Level
 - GDP
