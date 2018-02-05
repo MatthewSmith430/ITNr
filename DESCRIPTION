@@ -3,7 +3,7 @@ Type: Package
 Title: Analysis of the International Trade Network (ITN) in R
 Version: 0.1.0
 Author: Matthew Smith
-Maintainer: Matthew Smith <matthew.smith@anthro.ox.ac.uk>
+Maintainer: Matthew Smith <matt_smith.90@hotmail.co.uk>
 Description: This package provides functions to clean and analyse the international trade network.
 Depends: R (>= 2.10)
 License: GPL-3
