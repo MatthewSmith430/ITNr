@@ -2,7 +2,7 @@
 % Please edit documentation in R/ITNblock_plot_function.R
 \name{ITNblock_plot}
 \alias{ITNblock_plot}
-\title{ITN Blockmodel & Structural Equivalence}
+\title{ITN Blockmodel Plot}
 \usage{
 ITNblock_plot(gs, LABEL)
 }
@@ -15,15 +15,20 @@ ITNblock_plot(gs, LABEL)
 Network Plot - nodes coloured based on block membership
 }
 \description{
-This function calculates block membership for ITN and strucutral equivalence between countries
+This function calculates block membership for the ITN and then plots the network, with node colour according to block membership.
 }
 \examples{
-\dontrun{
+require(igraph)
+require(sna)
+require(intergraph)
+
 ##Create random International Trade Network (igraph object)
 ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 
-##Blockmodel plot
-ITNblock_plot(ITN,FALSE)
+##Add edge weights
+E(ITN)$weight<-runif(ecount(ITN), 0, 1)
 
-}
+##Blockmodel plot
+block_plot<-ITNblock_plot(ITN,FALSE)
+
 }

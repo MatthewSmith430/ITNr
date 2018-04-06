@@ -20,7 +20,7 @@ Panel of ITN plots
 This function plots a single/clean ITN
 }
 \examples{
-\dontrun{
+\donttest{
 ##Load graph
 data("ELEnet16")
 
@@ -28,7 +28,6 @@ data("ELEnet16")
 ##International Trade Network using WITSclean()
 
 ##Plot the network - No Label, colour by region
-ITN_make_plot(ELEnet16,FALSE,TRUE)
-
+ITN_plot_example<-ITN_make_plot(ELEnet16,FALSE,TRUE)
 }
 }

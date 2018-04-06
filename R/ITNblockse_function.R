@@ -4,14 +4,20 @@
 #' @param gs International Trade Network - igraph object
 #' @export
 #' @return List object containing block memebrship and strucutural equivalence matrix results
-#' @examples \dontrun{
+#' @examples
+#' require(igraph)
+#' require(sna)
+#' require(intergraph)
+#'
 #' ##Create random International Trade Network (igraph object)
 #' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
+#'
+#' ##Add edge weights
+#' E(ITN)$weight<-runif(ecount(ITN), 0, 1)
 #'
 #' ##Blockmodel & structural equivalence analysis
 #' blockse<-ITNblock_se(ITN)
 #'
-#' }
 
 ITNblock_se<-function(gs){
   gsnet<-intergraph::asNetwork(gs)

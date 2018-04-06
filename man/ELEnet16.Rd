@@ -8,6 +8,9 @@
 ELEnet16
 }
 \description{
-Electical Automtoive Goods 2016 Network
+Electical Automotive Goods 2016 Network. Electrical automotive goods category as defined by Amighini & Gogoni (2014)
+}
+\references{
+Amighini, A. and Gorgoni, S. (2014) The International Reorganisation of Auto Production, The World Economy, 37(7), pp. 923–952.
 }
 \keyword{datasets}

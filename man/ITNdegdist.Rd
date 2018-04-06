@@ -16,12 +16,12 @@ Panel of ITN degree distribtuion plots
 This function plots the ITN degree distribtuion
 }
 \examples{
-\dontrun{
+require(igraph)
+
 ##Create random International Trade Network (igraph object)
 ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 
 ##Plot degree distribution
-ITNdegdist(ITN)
+deg_dist_plot<-ITNdegdist(ITN)
 
-}
 }

@@ -16,12 +16,11 @@ Cluster object containing various cluster memebrship and correlation results
 This function calculates cluster membership for ITN and compares with regional groupings
 }
 \examples{
-\dontrun{
-##Create random International Trade Network (igraph object)
-ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
+\donttest{
+##Load ITN
+data(ELEnet16)
 
 ##Cluster Analysis
-CLU<-ITNcluster(ITN)
-
+CLU<-ITNcluster(ELEnet16)
 }
 }

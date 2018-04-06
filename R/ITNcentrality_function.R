@@ -4,17 +4,20 @@
 #' @param gs International Trade Network - igraph object
 #' @export
 #' @return Table of centrality results (dataframe)
-#' @examples \dontrun{
+#' @examples
+#' require(igraph)
 #' ##Create random International Trade Network (igraph object)
 #' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 #'
 #' ##Add edge weights
 #' E(ITN)$weight<-runif(ecount(ITN), 0, 1)
 #'
-#' ##Calculate the centrality
+#' ##Add vertex names
+#' V(ITN)$name<-1:vcount(ITN)
+#'
+#' ##Calculate the centrality measures
 #' ITNCENT<-ITNcentrality(ITN)
 #'
-#' }
 ITNcentrality<-function(gs){
   if (sum(igraph::degree(gs)==0)==0){
     net <- cbind(igraph::get.edgelist(gs, names=FALSE), igraph::E(gs)$weight)
@@ -42,7 +45,7 @@ ITNcentrality<-function(gs){
     Hub<-igraph::hub_score(gs, weights=NA)$vector
     Authority<-igraph::authority_score(gs, weights=NA)$vector
 
-    NAMES<-igraph::V(gs)$id
+    NAMES<-igraph::V(gs)$name
     TAB<-cbind(NAMES,Weighted.Out.Degree,Binary.Out.Degree,
                Weighted.In.Degree,Binary.In.Degree,
                Weighted.Degree.All,Binary.Degree.All,
@@ -91,7 +94,7 @@ ITNcentrality<-function(gs){
     Hub<-igraph::hub_score(gs, weights=NA)$vector
     Authority<-igraph::authority_score(gs, weights=NA)$vector
 
-    NAMES<-igraph::V(gs)$id
+    NAMES<-igraph::V(gs)$name
     TAB<-cbind(NAMES,Weighted.Out.Degree,Binary.Out.Degree,
                Weighted.In.Degree,Binary.In.Degree,
                Weighted.Degree.All,Binary.Degree.All,

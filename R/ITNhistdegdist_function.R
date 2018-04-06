@@ -1,17 +1,21 @@
 #' @title ITN Histogram Degree Distribution
 #'
-#' @description This function plots the ITN histogram degree distribtuion
+#' @description This function plots the histogram degree distribtuion for the ITN
 #' @param gs International Trade Network - igraph object
 #' @export
 #' @return Panel of ITN histogram degree distribtuion plots
-#' @examples \dontrun{
+#' @examples
+#' require(igraph)
+#'
 #' ##Create random International Trade Network (igraph object)
 #' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 #'
-#' ##Plot degree distribution histogram
-#' ITNhistdegdist(ITN)
+#' ##Add edge weights
+#' E(ITN)$weight<-runif(ecount(ITN), 0, 1)
 #'
-#' }
+#' ##Plot degree distribution histogram
+#' hist_deg_dist<-ITNhistdegdist(ITN)
+
 ITNhistdegdist<-function(gs){
   net <- cbind(igraph::get.edgelist(gs, names=FALSE),igraph:: E(gs)$weight)
   net <- tnet::as.tnet(net, type="weighted one-mode tnet")

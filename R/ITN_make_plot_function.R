@@ -6,7 +6,7 @@
 #' @param REGION Should nodes be coloured on the basis of region TRUE/FALSE
 #' @export
 #' @return Panel of ITN plots
-#' @examples \dontrun{
+#' @examples\donttest{
 #' ##Load graph
 #' data("ELEnet16")
 #'
@@ -14,9 +14,8 @@
 #' ##International Trade Network using WITSclean()
 #'
 #' ##Plot the network - No Label, colour by region
-#' ITN_make_plot(ELEnet16,FALSE,TRUE)
-#'
-#' }
+#' ITN_plot_example<-ITN_make_plot(ELEnet16,FALSE,TRUE)
+#'}
 ITN_make_plot<-function(gs,LABEL,REGION){
   gNET<-intergraph::asNetwork(gs)
   REG<-igraph::V(gs)$regionNAME

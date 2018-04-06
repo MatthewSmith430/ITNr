@@ -1,20 +1,41 @@
 #' @title Comtrader data clean
 #'
-#' @description This function takes trade data downloaded from WITS, cleans it and transforms it into a network.
+#' @description This function takes (import) trade data downloaded using the comtradr package, cleans it and transforms it into a network.
+#' Adding a number of country level attributes to nodes in the network, including: regional partition, GDP, GDP per capita, GDP growth and FDI.
 #' @param DF Dataframe of trade data downloaded using the comtradr package
 #' @param YEAR Year
 #' @param threshold Apply a threshold - TRUE, Extract the backbone - FALSE
 #' @param cutoff Threshold - cutoff level, Backbone - significance level
 #' @export
 #' @return International Trade Network - igraph object
-#
+#' @examples \donttest{
+#'##download data using comtradr
+#'#library(comtradr)
+#'
+#'##Download the trade data for tomatoes - code 0702
+#'##All countries, Year - 2016
+#'#ex_2 <- ct_search(reporters = "All",
+#'#                partners = "All",
+#'#                trade_direction = "imports",
+#'#                start_date = "2016-01-01",
+#'#                end_date = "2016-12-31",
+#'#                commod_codes = "0702")
+#'
+#'##this then gives a data frame which
+#'##we can clean using the following function:
+#'tomatoesITN<-Comtradrclean(ex_2,2016,TRUE,0.01)
+#'
+#'##We apply a threshold - only retaining ties that are at least 0.01%
+#'##of total tomato trade
+#'
+#' }
 Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   DATA<-subset(DF,DF$year==YEAR)
 
-  H<-aggregate(trade_value_usd~reporter_iso+partner_iso, DATA, sum)
+  H<-stats::aggregate(trade_value_usd~reporter_iso+partner_iso, DATA, sum)
 
-  Sender<-as.vector(H[,"PartnerISO3"])
-  Receiver<-as.vector(H[,"ReporterISO3"])
+  Sender<-as.vector(H[,"partner_iso"])
+  Receiver<-as.vector(H[,"reporter_iso"])
   VAL<-H[,"trade_value_usd"]
   FULLel<-as.data.frame(cbind(Sender,Receiver,VAL))
   WDIDataSeries<-WDI::WDI_data

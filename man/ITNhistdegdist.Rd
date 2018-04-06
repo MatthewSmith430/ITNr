@@ -13,15 +13,17 @@ ITNhistdegdist(gs)
 Panel of ITN histogram degree distribtuion plots
 }
 \description{
-This function plots the ITN histogram degree distribtuion
+This function plots the histogram degree distribtuion for the ITN
 }
 \examples{
-\dontrun{
+require(igraph)
+
 ##Create random International Trade Network (igraph object)
 ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 
-##Plot degree distribution histogram
-ITNhistdegdist(ITN)
+##Add edge weights
+E(ITN)$weight<-runif(ecount(ITN), 0, 1)
 
-}
+##Plot degree distribution histogram
+hist_deg_dist<-ITNhistdegdist(ITN)
 }

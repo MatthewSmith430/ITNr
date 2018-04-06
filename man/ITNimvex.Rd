@@ -2,7 +2,7 @@
 % Please edit documentation in R/ITNimvex_function.R
 \name{ITNimvex}
 \alias{ITNimvex}
-\title{ITN Degree Distribution}
+\title{ITN - Exports vs Imports Plot}
 \usage{
 ITNimvex(gs, weighted)
 }
@@ -15,15 +15,20 @@ ITNimvex(gs, weighted)
 Imports Vs Exports Plot
 }
 \description{
-This function plots the ITN degree distribtuion
+The following function produces a plot showing imports
+(in degree) vs exports (out degree). This allows us to identify whether
+in the ITN, countries that export high levels also import high levels.
+The plot can be produced for either weighted or binary import and export ties.
 }
 \examples{
-\dontrun{
+require(igraph)
+
 ##Create random International Trade Network (igraph object)
 ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 
-##Plot binary import vs exports
-ITNimvex(ITN,FALSE)
+##Add edge weights
+E(ITN)$weight<-runif(ecount(ITN), 0, 1)
 
-}
+##Plot binary import vs exports
+imvex_plot<-ITNimvex(ITN,FALSE)
 }

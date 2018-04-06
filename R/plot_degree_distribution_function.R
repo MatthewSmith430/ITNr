@@ -5,14 +5,14 @@
 #' @param a mode - "in","out","all
 #' @export
 #' @return Panel of ITN degree distribtuion plots
-#' @examples \dontrun{
+#' @examples
+#' require(igraph)
 #' ##Create random International Trade Network (igraph object)
 #' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 #'
 #' ##Plot out degree distribution
 #' plot_degree_distribution(ITN,"in")
-#'
-#' }
+
 plot_degree_distribution <-function(graph,a) {
   d = igraph::degree(graph, mode = a)
   dd = igraph::degree.distribution(graph, mode = a, cumulative = FALSE)
@@ -31,6 +31,7 @@ plot_degree_distribution <-function(graph,a) {
   #     col = 1, main = TITLErev)
   ggplot2::ggplot(plotdata, ggplot2::aes(x=degree, y=probability)) +
     ggplot2::geom_point(color="darkred")+
+    ggplot2::geom_jitter(position = "jitter",color="darkred")+
     ggplot2::labs(title=TITLErev,
          x=TYPE, y = "Probability")+
     ggplot2::theme_gray()

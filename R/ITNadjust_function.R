@@ -5,7 +5,7 @@
 #' @param j Element of matrix list to compare with others
 #' @export
 #' @return Matrix
-#' @examples \dontrun{
+#' @examples
 #' ##Create a list of random matrices (of different sizes)
 #' ##Labels - letters of alphabet (can represent actor names)
 #' mat1<- matrix(round(runif(10*10)), 10, 10)
@@ -21,13 +21,13 @@
 #' colnames(mat3)<-LETTERS[15:26]
 #'
 #' ##Create matrix list
-#' #' MATlist<-list(mat1,mat2,mat3)
+#' MATlist<-list(mat1,mat2,mat3)
 #'
 #' ##Adjust matrix 1 so that it has additional rows/actors not
 #' ##in the original matrix
 #'
 #' mat1adjust<-ITNadjust(MATlist,1)
-#' }
+
 
 ITNadjust<-function(MATlist,j){
   files2<-MATlist #matrix list

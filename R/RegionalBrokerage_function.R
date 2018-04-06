@@ -5,6 +5,7 @@
 #' @param filename Filename for the Brokerage Analysis
 #' @export
 #' @return Results Dataframe
+#' @references Gould, R. V. and Fernandez, R. M. (1989) Structures of mediation: A formal approach to brokerage in transaction networks, Sociological methodology, 19(1989), pp. 89–126.
 #' @examples \dontrun{
 #' ##Load graph
 #' data("ELEnet16")

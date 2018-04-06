@@ -59,7 +59,7 @@ library(ITNr)
 This package comes with example International Trade Network data. The network data is trade in electrical automotive goods, where this category is defined by Amighini & Gorgoni (2014):  
 Amighini, A. and Gorgoni, S. (2014) The International Reorganisation of Auto Production, The World Economy, 37(7), pp. 923–952.  
 
-These ITNs are igraph objects with a number of attributes (region, GDP, GDP per captia etc). THe edge weights are proportion of global trade in the electrical automtoive goods category group. A threshold has beeen applied to the edge weights so only the most relevant edges and countries are included in th network. Therefore only edges that are at least 0.01% of global trade are included in the network.   
+These ITNs are igraph objects with a number of attributes (region, GDP, GDP per captia etc). The edge weights are proportion of global trade in the electrical automotive goods category group. A threshold has been applied to the edge weights so only the most relevant edges and countries are included in the network. Therefore only edges that are at least 0.01% of global trade are included in the network.   
 
 The first object is a single network for 2016, the second is a list of networks for 2006 - 2016.
 
@@ -86,8 +86,8 @@ The network is also weighted, where the weights refer to the proportion of world
 The function requires a number of inputs:  
 - CSV file name  
 - Year (as the csv file may contain trade data for multiple years, this therefore allows you to create a ITN for a single year from this CSV file)  
-- Threshold TRUE/FALSE. TRUE - you want to apply a threshold with a cutoff. FALSE - instead of applying a thrshold you extract the backbone of the network, retaining only statistically signifcant edges.  
-- Cutoff - for the threshold TRUE this is the cutoff point, for FALSE  this is the signficance level for the backbone.  
+- Threshold TRUE/FALSE. TRUE - you want to apply a threshold with a cutoff. FALSE - instead of applying a threshold you extract the backbone of the network, retaining only statistically significant edges.  
+- Cutoff - for the threshold TRUE this is the cutoff point, for FALSE  this is the significance level for the backbone.  
 
 Reference for extracting the backbone of a network: Serrano, M. Á., Boguñá, M. and Vespignani, A. (2009) Extracting the multiscale backbone of complex weighted networks, Proceedings of the National Academy of Sciences, 106(16), pp. 6483–6488.  
 
@@ -113,7 +113,7 @@ The first produces a panel with four network plots. The purpose of this function
 ### Plot Set
 In the plot set function, the four plots produced include:  
 - Network plot highlighting clusters using the fast greedy algorithm.  
-- Network plot with node colours for commnities detected using the spinglass algorithm.  
+- Network plot with node colours for communities detected using the spinglass algorithm.  
 - Network plot with nodes coloured by regional partition.
 - Network plot with nodes coloured by regional partition and node size based on outdegree centrality.  
 
@@ -142,7 +142,7 @@ ITN_make_plot(ELEnet16,FALSE,TRUE)
 ```
 
 ## Degree Distribtuion
-We often want to examine the degree distribution of the ITN - that it the distribtuion of import and export ties. We present two plots of the degree distribtuion: probability and histogram.  
+We often want to examine the degree distribution of the ITN - that it the distribution of import and export ties. We present two plots of the degree distribution: probability and histogram.  
 
 ### Probability Plot
 This plot shows the probability of degree scores over the whole network.  
@@ -183,7 +183,7 @@ ITNcorr(ELEnet16)
 ```
 
 ## Network Analysis
-Initial analysis of the ITN often involves calculating network level properties and calcuting a variety of centrality measures for countries. 
+Initial analysis of the ITN often involves calculating network level properties and calculating a variety of centrality measures for countries. 
 
 ### Network Properties
 The network level properties calculated for the ITN include:  
@@ -200,7 +200,7 @@ The network level properties calculated for the ITN include:
 -Out Degree Centralisation  
 -In Degree Centralisation  
 -All Degree Centralisation  
--Clustering coefficent (transitivity)  
+-Clustering coefficient (transitivity)  
 -Clustering Weighted  
 -Region Homophily  
 -Degree Assortativity  
@@ -243,8 +243,8 @@ CLU<-ITNcluster(ELEnet16)
 ```
 
 ### Blockmodels and Structural Equivalence 
-Blockmodelling and strucutral equivalence are important concepts in international trade. Blockmodels indicates the.  
-Strucutral equivalence allows us to explore to what extent two coutnries hold equivalent positions in the ITN.  
+Blockmodelling and structural equivalence are important concepts in international trade. Blockmodels indicates the.  
+Structural equivalence allows us to explore to what extent two countries hold equivalent positions in the ITN.  
 This function gives the block membership for each country and a structural equivalence matrix, which indicates how equivalent pairs of countries are in the ITN.  
 ```{r BLOCKSE,eval=FALSE}
 blockse<-ITNblock_se(ELEnet16)
@@ -262,7 +262,7 @@ ITNblock_plot(ELEnet16,FALSE)
 ```
 
 ## Longitudinal Network Analysis  
-Trade data is availble for decades, therefore longitudnal analysis is also avaiable. Here we present function on how to create a dynamic network object based on a set of (temporal) ITNs (e.g. one ITN for each year).   
+Trade data is available for decades, therefore longitudinal analysis is also available. Here we present function on how to create a dynamic network object based on a set of (temporal) ITNs (e.g. one ITN for each year).   
 
 To create a dynamic network object, we need to specify a list of ITNs. These are usually an ITN for each year, where they are trade in the same product groups across time.  
 ```{r DYN,eval=FALSE}
@@ -283,7 +283,7 @@ There are many additional packages and functions to analyse this dynamic network
 Below is some example code to complement this package and analyse the dynamic network ITN object. 
 
 #### Film Strip Plots
-Film strip plots can be used to create a static plot of a series ofdynamic networks. Below is the code to create a film strip plot from a dynamic network object.
+Film strip plots can be used to create a static plot of a series of dynamic networks. Below is the code to create a film strip plot from a dynamic network object.
 ```{r FILM,eval=FALSE}
 ##Create a dynamic network object for the list of ITNs
 ITNdyn<-ITNdynamic(ELEnetList)
@@ -325,8 +325,8 @@ saveGIF(render.animation(ITNdyn,
 #### Temporal Metrics
 These commands include timeline options, where we can view the dynamics of a network as a timeline by plotting the active spells of edges and vertices.
 
-We can also make use of the `tsna` package to undertake some basic temporal social network analysis. This includes examining how many edges form at each time step for the dynamic network oject (`tEdgeFormation`) and producing a plot of this information. 
-The `tsna` package allows us to compute a time series using network configruation terms (terms specified in the `ergm` package). In the example below the `gtrans` function to calculate and plot transitivity in the networks over time.
+We can also make use of the `tsna` package to undertake some basic temporal social network analysis. This includes examining how many edges form at each time step for the dynamic network object (`tEdgeFormation`) and producing a plot of this information. 
+The `tsna` package allows us to compute a time series using network configuration terms (terms specified in the `ergm` package). In the example below the `gtrans` function to calculate and plot transitivity in the networks over time.
 ```{r TEMPMET,eval=FALSE}
 ##Create a dynamic network object for the list of ITNs
 ITNdyn<-ITNdynamic(ELEnetList)

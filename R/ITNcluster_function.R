@@ -4,14 +4,13 @@
 #' @param gs International Trade Network - igraph object (with region attribute)
 #' @export
 #' @return Cluster object containing various cluster memebrship and correlation results
-#' @examples \dontrun{
-#' ##Create random International Trade Network (igraph object)
-#' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
+#' @examples\donttest{
+#' ##Load ITN
+#' data(ELEnet16)
 #'
 #' ##Cluster Analysis
-#' CLU<-ITNcluster(ITN)
-#'
-#' }
+#' CLU<-ITNcluster(ELEnet16)
+#'}
 
 ITNcluster<-function(gs){
   cfg <- igraph::cluster_fast_greedy(igraph::as.undirected(gs))
@@ -30,6 +29,7 @@ ITNcluster<-function(gs){
   igraph::V(gs)$infomap<-infomap$membership
 
   TAB<-igraph::get.data.frame(gs, what = "vertices")
+
   NAME<-TAB$name
   REG<-TAB$region
   REG<-as.numeric(REG)

@@ -4,14 +4,15 @@
 #' @param gs International Trade Network - igraph object
 #' @export
 #' @return Panel of ITN degree distribtuion plots
-#' @examples \dontrun{
+#' @examples
+#' require(igraph)
+#'
 #' ##Create random International Trade Network (igraph object)
 #' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
 #'
 #' ##Plot degree distribution
-#' ITNdegdist(ITN)
+#' deg_dist_plot<-ITNdegdist(ITN)
 #'
-#' }
 ITNdegdist<-function(gs){
 
   inplot<-plot_degree_distribution(gs,"in")

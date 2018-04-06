@@ -1,17 +1,19 @@
 #' @title ITN Plots
 #'
-#' @description This function plots the ITN for a quick inspection
+#' @description This function creates a panel of four plots of the ITN for a quick inspection.
+#' Thes include plots: (i) highlighting clusters using the fast greedy algorithm.(ii)node colours for commnities detected using the spinglass algorithm.
+#' (iii)nodes coloured by regional partition and (iv)with nodes coloured by regional partition and node size based on outdegree centrality.
 #' @param gs International Trade Network - igraph object
 #' @export
 #' @return Panel of ITN plots
-#' @examples \dontrun{
-#' ##Create random International Trade Network (igraph object)
-#' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
+#' @examples\donttest{
+#' ##Load the network
+#' data(ELEnet16)
 #'
 #' ##Plot set of network visualisations
-#' ITNplotset(ITN)
+#' ITNplotset(ELEnet16)
 #'
-#' }
+#'}
 ITNplotset<-function(gs){
   graphics::par(mfrow=c(2,2))
   igraph::V(gs)$vertex.label<-NA

@@ -1,20 +1,24 @@
 #' @title get.backbone
 #'
-#' @description This function extract the backbone of a network
+#' @description This function extracts the backbone of a network
 #' @param G igraph network
 #' @param alpha Signifcance level
 #' @param directed Default is TRUE
 #' @export
 #' @return Backbone of the network
 #' @references Serrano, M. Á., Boguñá, M. and Vespignani, A. (2009) Extracting the multiscale backbone of complex weighted networks, Proceedings of the National Academy of Sciences, 106(16), pp. 6483–6488.
-#' @examples \dontrun{
-#' ##Directed Graph
+#' @examples
+#' require(igraph)
+#'
+#' ##Create a random (directed) network
 #' gs<-erdos.renyi.game(50,0.2,directed = TRUE)
 #'
-#' ##Extract backbone at 0.05 significance level
-#' backbone<-get.backbone(gs,0.05)
+#' ##Add edge weights to the network
+#' E(gs)$weight<-runif(ecount(gs), 0, 1)
 #'
-#' }
+#' ##Extract backbone at 0.05 significance level
+#' backbone<-get.backbone(gs,0.1)
+#'
 
 get.backbone<-function(G, alpha, directed = TRUE){
   # get edgelist
