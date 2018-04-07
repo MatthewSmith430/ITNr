@@ -32,7 +32,7 @@ ITNhistdegdist<-function(gs){
     ggplot2::geom_histogram(fill="darkblue",
                    alpha = 1,position = 'stack', stat = 'bin',
                    binwidth = 1) +
-    ggplot2::labs(title="Out Degree Distribtuion") +
+    ggplot2::labs(title="Out Degree Distribution") +
     ggplot2::labs(x="Out Degree", y="Frquency")+
     ggplot2::theme_gray()
 
@@ -40,7 +40,7 @@ ITNhistdegdist<-function(gs){
     ggplot2::geom_histogram(fill="darkblue",
                             alpha = 1,position = 'stack', stat = 'bin',
                             binwidth = 1) +
-    ggplot2::labs(title="In Degree Distribtuion") +
+    ggplot2::labs(title="In Degree Distribution") +
     ggplot2::labs(x="In Degree", y="Frquency")+
     ggplot2::theme_gray()
 
@@ -48,7 +48,7 @@ ITNhistdegdist<-function(gs){
     ggplot2::geom_histogram(fill="darkblue",
                             alpha = 1,position = 'stack', stat = 'bin',
                             binwidth = 1) +
-    ggplot2::labs(title="Degree Distribtuion") +
+    ggplot2::labs(title="Degree Distribution") +
     ggplot2::labs(x="Degree", y="Frquency")+
     ggplot2::theme_gray()
 
