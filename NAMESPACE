@@ -2,6 +2,7 @@
 
 export(Comtradrclean)
 export(ITN_make_plot)
+export(ITN_map_plot)
 export(ITNadjust)
 export(ITNblock_plot)
 export(ITNblock_se)

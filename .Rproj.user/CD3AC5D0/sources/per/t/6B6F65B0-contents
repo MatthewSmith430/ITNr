@@ -1,0 +1,16 @@
+Package: ITNr
+Type: Package
+Title: Analysis of the International Trade Network
+Version: 0.2.0
+Author: Matthew Smith
+Maintainer: Matthew Smith <matt_smith.90@hotmail.co.uk>
+Description: Functions to clean and process international trade data into an international trade network (ITN) are provided. It then provides a set a functions to undertake analysis and plots of the ITN (extract the backbone, centrality, blockmodels, clustering). Examining the key players in the ITN and regional trade patterns. 
+Depends: R (>= 2.10)
+License: GPL-3
+Encoding: UTF-8
+Imports: stats,circlize,GoodmanKruskal,graphics,RColorBrewer,
+         reshape2,maps,blockmodeling,igraph,utils,plyr,dplyr,statnet,
+         animation,Matrix,cowplot,ggplot2,GGally,fastmatch,intergraph,
+         sna,tnet,WDI,network,xergm,xergm.common,networkDynamic,ndtv
+LazyData: true
+RoxygenNote: 6.0.1

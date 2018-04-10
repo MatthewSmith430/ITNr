@@ -1,8 +1,8 @@
 {
-    "path" : "F:/GITHUB/ITNr/ITNr/R",
+    "path" : "F:/GITHUB/ITNr/ITNr/data",
     "sortOrder" : [
         {
-            "ascending" : true,
+            "ascending" : false,
             "columnIndex" : 2
         }
     ]
