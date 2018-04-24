@@ -2,17 +2,12 @@
 title: "ITNr"
 output: github_document
 ---
-<!-- rmarkdown v1 -->
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # ITNr - International Trade Network (ITN) analysis in R
-
-[![CRAN status](https://www.r-pkg.org/badges/version/ITNr)](https://cran.r-project.org/package=ITNr)
-
-[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/ITNr?color=brightgreen)]
-
 International trade data can be analysed using a network perspective, where the network is a set of countries linked by weighted and directed trade ties. This network is referred to by various names, the International Trade Network (ITN), World Trade Web (WTW) and the World Trade Network (WTN) etc.  
 This package provides a number of functions for cleaning and processing international trade data into a network, and undertaking a set of relevant analysis. 
 
@@ -112,7 +107,7 @@ In the plot set function, the four plots produced include:
 
 - Network plot with nodes coloured by regional partition and node size based on outdegree centrality.  
 
-```{r plotsnet, echo=TRUE,error=FALSE,warning=FALSE}
+```{r plotsnet, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 
 data("ELEnet16")
@@ -129,7 +124,7 @@ If the nodes are coloured by region, the ties between countries in the same regi
 Node size is based on weighted out degree centrality - so reflects export performance. The edge size is based on the weights of the ties.  
 
 In the example below the ITN is coloured by region and the node labels are not present.  
-```{r plotsingle, echo=TRUE,error=FALSE,warning=FALSE}
+```{r plotsingle, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -142,7 +137,7 @@ We often want to examine the degree distribution of the ITN - that it the distri
 
 ### Probability Plot
 This plot shows the probability of degree scores over the whole network.  
-```{r plotpro, echo=TRUE,error=FALSE,warning=FALSE}
+```{r plotpro, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -151,7 +146,7 @@ ITNdegdist(ELEnet16)
 
 ### Histogram Plot  
 This plot shows the count/number of degree scores over the whole network. 
-```{r plothist, echo=TRUE,error=FALSE,warning=FALSE}
+```{r plothist, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -160,7 +155,7 @@ ITNhistdegdist(ELEnet16)
 
 ## Imports Vs Exports Plot
 The following function produces a plot showing imports (in degree) vs exports (out degree). This allows us to identify whether in the ITN, countries that export high levels also import high levels. The plot can be produced for either weighted or binary import and export ties.  
-```{r plotImEx, echo=TRUE,error=FALSE,warning=FALSE}
+```{r plotImEx, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -171,7 +166,7 @@ ITNimvex(ELEnet16,FALSE)
 ## Node Strength - Degree Correlation Plot
 The following function creates a correlation plot to examine the correlation between node strength and node degree.
 
-```{r STRDEGPLOT, echo=TRUE,error=FALSE,warning=FALSE}
+```{r STRDEGPLOT, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -183,41 +178,25 @@ Initial analysis of the ITN often involves calculating network level properties 
 
 ### Network Properties
 The network level properties calculated for the ITN include:  
--Size (number of nodes)  
+- Size (number of nodes)  
+- Density  
+- Reciprocity  
+- Diameter  
+- Average path length  
+- Average node strength  
+- Average Degree  
+- Betweenness Centralisation  
+- Closeness Centralisation  
+- Eigenvector Centralisation  
+- Out Degree Centralisation  
+- In Degree Centralisation  
+- All Degree Centralisation  
+- Clustering coefficient (transitivity)  
+- Clustering Weighted  
+- Region Homophily  
+- Degree Assortativity  
 
--Density  
-
--Reciprocity  
-
--Diameter  
-
--Average path length  
-
--Average node strength  
-
--Average Degree  
-
--Betweenness Centralisation  
-
--Closeness Centralisation  
-
--Eigenvector Centralisation  
-
--Out Degree Centralisation  
-
--In Degree Centralisation  
-
--All Degree Centralisation  
-
--Clustering coefficient (transitivity)  
-
--Clustering Weighted  
-
--Region Homophily  
-
--Degree Assortativity  
-
-```{r netprop, echo=TRUE,error=FALSE,warning=FALSE}
+```{r netprop, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -228,7 +207,7 @@ head(NetProp)
 
 ### Centrality  
 We present a function that calculates several centrality metrics for the ITN. These capture the importance of countries in the ITN, with a focus on their export or import performance for the majority of measures. 
-```{r cent, echo=TRUE,error=FALSE,warning=FALSE}
+```{r cent, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -265,7 +244,7 @@ blockse<-ITNblock_se(ELEnet16)
 #### Blockmodel Plot
 In addition to calculating the blockmodel membership, we introduce a function to plot the ITN with node coloured by block membership.  
 You can also set whether you want node labels present(TRUE) or absent (FALSE).  
-```{r plotBLOCK, echo=TRUE,error=FALSE,warning=FALSE}
+```{r plotBLOCK, echo=TRUE,message=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
