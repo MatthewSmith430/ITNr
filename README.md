@@ -1,7 +1,3 @@
----
-title: "ITNr"
-output: github_document
----
 <!-- rmarkdown v1 -->
 
 
@@ -9,7 +5,7 @@ output: github_document
 
 [![CRAN status](https://www.r-pkg.org/badges/version/ITNr)](https://cran.r-project.org/package=ITNr)
 
-[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/ITNr?color=brightgreen)]
+![downloads](https://cranlogs.r-pkg.org/badges/grand-total/ITNr?color=brightgreen)
 
 International trade data can be analysed using a network perspective, where the network is a set of countries linked by weighted and directed trade ties. This network is referred to by various names, the International Trade Network (ITN), World Trade Web (WTW) and the World Trade Network (WTN) etc.  
 This package provides a number of functions for cleaning and processing international trade data into a network, and undertaking a set of relevant analysis. 
@@ -139,53 +135,6 @@ data("ELEnet16")
 
 #No labels and node coloured by region
 ITN_make_plot(ELEnet16,FALSE,TRUE)
-```
-
-```
-## Loading required package: network
-```
-
-```
-## network: Classes for Relational Data
-## Version 1.13.0.1 created on 2015-08-31.
-## copyright (c) 2005, Carter T. Butts, University of California-Irvine
-##                     Mark S. Handcock, University of California -- Los Angeles
-##                     David R. Hunter, Penn State University
-##                     Martina Morris, University of Washington
-##                     Skye Bender-deMoll, University of Washington
-##  For citation information, type citation("network").
-##  Type help("network-package") to get started.
-```
-
-```
-## Loading required package: sna
-```
-
-```
-## Loading required package: statnet.common
-```
-
-```
-## 
-## Attaching package: 'statnet.common'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     order
-```
-
-```
-## sna: Tools for Social Network Analysis
-## Version 2.4 created on 2016-07-23.
-## copyright (c) 2005, Carter T. Butts, University of California-Irvine
-##  For citation information, type citation("sna").
-##  Type help(package="sna") to get started.
-```
-
-```
-## Loading required package: scales
 ```
 
 ![plot of chunk plotsingle](figure/plotsingle-1.png)

@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524585589034.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "961886555",
+    "id" : "94CE8AB0",
+    "lastKnownWriteTime" : 1524585696,
+    "last_content_update" : 1524585695057,
+    "path" : "F:/GITHUB/ITNr/ITNr/README.md",
+    "project_path" : "README.md",
+    "properties" : {
+        "cursorPosition" : "137,3",
+        "ignored_words" : "ITNr,igraph,captia,capita,csv,Á,Boguñá,Vespignani,multiscale,spinglass,outdegree,intra,colour,Betweenness,Centralisation,Eigenvector,Homophily,Assortativity,Blockmodelling,Blockmodels,blockmodel,networkDynamic,ndtv,magik\n",
+        "scrollLine" : "128"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}
