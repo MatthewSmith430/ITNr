@@ -2,12 +2,17 @@
 title: "ITNr"
 output: github_document
 ---
-
+<!-- rmarkdown v1 -->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # ITNr - International Trade Network (ITN) analysis in R
+
+[![CRAN status](https://www.r-pkg.org/badges/version/ITNr)](https://cran.r-project.org/package=ITNr)
+
+[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/ITNr?color=brightgreen)]
+
 International trade data can be analysed using a network perspective, where the network is a set of countries linked by weighted and directed trade ties. This network is referred to by various names, the International Trade Network (ITN), World Trade Web (WTW) and the World Trade Network (WTN) etc.  
 This package provides a number of functions for cleaning and processing international trade data into a network, and undertaking a set of relevant analysis. 
 
@@ -39,22 +44,6 @@ library(reshape2)
 library(ITNr)
 ```
 
-```{r packagesRUN,eval=TRUE,echo=FALSE,results='hide',cache=TRUE}
-library(igraph)
-library(dplyr)
-library(plyr)
-library(ggplot2)
-library(GGally)
-library(cowplot)
-library(intergraph)
-library(sna)
-library(xergm)
-library(ndtv)
-library(networkDynamic)
-library(tnet)
-library(reshape2)
-library(ITNr)
-```
 ## Loading Example Data
 This package comes with example International Trade Network data. The network data is trade in electrical automotive goods, where this category is defined by Amighini & Gorgoni (2014):  
 Amighini, A. and Gorgoni, S. (2014) The International Reorganisation of Auto Production, The World Economy, 37(7), pp. 923–952.  
@@ -85,8 +74,11 @@ The network is also weighted, where the weights refer to the proportion of world
 
 The function requires a number of inputs:  
 - CSV file name  
+
 - Year (as the csv file may contain trade data for multiple years, this therefore allows you to create a ITN for a single year from this CSV file)  
+
 - Threshold TRUE/FALSE. TRUE - you want to apply a threshold with a cutoff. FALSE - instead of applying a threshold you extract the backbone of the network, retaining only statistically significant edges.  
+
 - Cutoff - for the threshold TRUE this is the cutoff point, for FALSE  this is the significance level for the backbone.  
 
 Reference for extracting the backbone of a network: Serrano, M. Á., Boguñá, M. and Vespignani, A. (2009) Extracting the multiscale backbone of complex weighted networks, Proceedings of the National Academy of Sciences, 106(16), pp. 6483–6488.  
@@ -113,12 +105,16 @@ The first produces a panel with four network plots. The purpose of this function
 ### Plot Set
 In the plot set function, the four plots produced include:  
 - Network plot highlighting clusters using the fast greedy algorithm.  
+
 - Network plot with node colours for communities detected using the spinglass algorithm.  
-- Network plot with nodes coloured by regional partition.
+
+- Network plot with nodes coloured by regional partition.  
+
 - Network plot with nodes coloured by regional partition and node size based on outdegree centrality.  
 
-```{r plotsnet, echo=TRUE}
+```{r plotsnet, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
+
 data("ELEnet16")
 
 ITNplotset(ELEnet16)
@@ -133,7 +129,7 @@ If the nodes are coloured by region, the ties between countries in the same regi
 Node size is based on weighted out degree centrality - so reflects export performance. The edge size is based on the weights of the ties.  
 
 In the example below the ITN is coloured by region and the node labels are not present.  
-```{r plotsingle, echo=TRUE}
+```{r plotsingle, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -146,7 +142,7 @@ We often want to examine the degree distribution of the ITN - that it the distri
 
 ### Probability Plot
 This plot shows the probability of degree scores over the whole network.  
-```{r plotpro, echo=TRUE}
+```{r plotpro, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -155,7 +151,7 @@ ITNdegdist(ELEnet16)
 
 ### Histogram Plot  
 This plot shows the count/number of degree scores over the whole network. 
-```{r plothist, echo=TRUE}
+```{r plothist, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -164,7 +160,7 @@ ITNhistdegdist(ELEnet16)
 
 ## Imports Vs Exports Plot
 The following function produces a plot showing imports (in degree) vs exports (out degree). This allows us to identify whether in the ITN, countries that export high levels also import high levels. The plot can be produced for either weighted or binary import and export ties.  
-```{r plotImEx, echo=TRUE}
+```{r plotImEx, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -175,7 +171,7 @@ ITNimvex(ELEnet16,FALSE)
 ## Node Strength - Degree Correlation Plot
 The following function creates a correlation plot to examine the correlation between node strength and node degree.
 
-```{r STRDEGPLOT, echo=TRUE}
+```{r STRDEGPLOT, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -188,24 +184,40 @@ Initial analysis of the ITN often involves calculating network level properties 
 ### Network Properties
 The network level properties calculated for the ITN include:  
 -Size (number of nodes)  
+
 -Density  
+
 -Reciprocity  
+
 -Diameter  
+
 -Average path length  
+
 -Average node strength  
+
 -Average Degree  
+
 -Betweenness Centralisation  
+
 -Closeness Centralisation  
+
 -Eigenvector Centralisation  
+
 -Out Degree Centralisation  
+
 -In Degree Centralisation  
+
 -All Degree Centralisation  
+
 -Clustering coefficient (transitivity)  
+
 -Clustering Weighted  
+
 -Region Homophily  
+
 -Degree Assortativity  
 
-```{r netprop, echo=TRUE}
+```{r netprop, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -216,7 +228,7 @@ head(NetProp)
 
 ### Centrality  
 We present a function that calculates several centrality metrics for the ITN. These capture the importance of countries in the ITN, with a focus on their export or import performance for the majority of measures. 
-```{r cent, echo=TRUE}
+```{r cent, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
@@ -253,7 +265,7 @@ blockse<-ITNblock_se(ELEnet16)
 #### Blockmodel Plot
 In addition to calculating the blockmodel membership, we introduce a function to plot the ITN with node coloured by block membership.  
 You can also set whether you want node labels present(TRUE) or absent (FALSE).  
-```{r plotBLOCK, echo=TRUE}
+```{r plotBLOCK, echo=TRUE,error=FALSE,warning=FALSE}
 library(ITNr)
 data("ELEnet16")
 
