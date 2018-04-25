@@ -18,6 +18,7 @@ Matrix
 This function adjusts ITN matrices so they are the same size
 }
 \examples{
+\donttest{
 ##Create a list of random matrices (of different sizes)
 ##Labels - letters of alphabet (can represent actor names)
 mat1<- matrix(round(runif(10*10)), 10, 10)
@@ -39,4 +40,5 @@ MATlist<-list(mat1,mat2,mat3)
 ##in the original matrix
 
 mat1adjust<-ITNadjust(MATlist,1)
+}
 }

@@ -32,15 +32,7 @@ ITNcentrality_binary<-function(gs){
                Binary.Degree.All,
                Betweenness,Closeness,Eigenvector,Hub,Authority)
     TAB2<-as.matrix(TAB)
-    mm<-matrix("NA",length(ISOLATES),12)
-    mm[,1]<-ISOLATES
-    colhead<-c("NAMES","Binary.Out.Degree",
-              "Binary.In.Degree","Binary.Degree.All",
-               "Betweenness","Closeness","Eigenvector",
-              "Hub","Authority")
-    colnames(mm)<-colhead
-    TAB2<-rbind(TAB,mm)
-    TAB2<-TAB2[order(TAB2[,1]),]
+    #TAB2<-TAB2[order(TAB2[,1]),]
     myDF<-as.data.frame(TAB2,stringsAsFactors =FALSE)
     myDF$NAMES<-as.character(myDF$NAMES)
     myDF$Binary.Out.Degree<-as.numeric(myDF$Binary.Out.Degree)

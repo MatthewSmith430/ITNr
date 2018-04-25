@@ -5,7 +5,7 @@
 #' @param j Element of matrix list to compare with others
 #' @export
 #' @return Matrix
-#' @examples
+#' @examples\donttest{
 #' ##Create a list of random matrices (of different sizes)
 #' ##Labels - letters of alphabet (can represent actor names)
 #' mat1<- matrix(round(runif(10*10)), 10, 10)
@@ -27,6 +27,7 @@
 #' ##in the original matrix
 #'
 #' mat1adjust<-ITNadjust(MATlist,1)
+#' }
 
 
 ITNadjust<-function(MATlist,j){

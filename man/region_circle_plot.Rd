@@ -16,9 +16,11 @@ Circle Plot
 This function creates a chord diagram/circle plot for levels of trade between regional partitions
 }
 \examples{
+\donttest{
 ##Load graph
 data("ELEnet16")
 
 ##Create region circle plot
 region_circle_plot(ELEnet16)
+}
 }

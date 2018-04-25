@@ -4,12 +4,13 @@
 #' @param gs igraph ITN object (with attributes added)
 #' @export
 #' @return Circle Plot
-#' @examples
+#' @examples\donttest{
 #' ##Load graph
 #' data("ELEnet16")
 #'
 #' ##Create region circle plot
 #' region_circle_plot(ELEnet16)
+#' }
 
 region_circle_plot<-function(gs){
   DF<-igraph::get.data.frame(gs)

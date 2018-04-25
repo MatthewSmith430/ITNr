@@ -16,10 +16,12 @@ Plot of the ITN on world map
 This function plots the international trade network on a world map
 }
 \examples{
+\donttest{
 require(maps)
 ##Load the ITN
 data(ELEnet16)
 
 ## Plot ITN on map - node size based on outdegree
 ITN_map_plot(ELEnet16)
+}
 }

@@ -4,13 +4,14 @@
 #' @param gs International Trade Network - igraph object
 #' @export
 #' @return Plot of the ITN on world map
-#' @examples
+#' @examples\donttest{
 #' require(maps)
 #' ##Load the ITN
 #' data(ELEnet16)
 #'
 #' ## Plot ITN on map - node size based on outdegree
 #' ITN_map_plot(ELEnet16)
+#' }
 ITN_map_plot<-function(gs){
   cap_lat_lon<-base::get("cap_lat_lon")
   NAME<-igraph::V(gs)$name
