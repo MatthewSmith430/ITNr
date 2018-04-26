@@ -9,8 +9,9 @@ Depends: R (>= 2.10)
 License: GPL-3
 Encoding: UTF-8
 Imports: stats,circlize,GoodmanKruskal,graphics,RColorBrewer,
-         reshape2,maps,blockmodeling,igraph,utils,plyr,dplyr,statnet,
-         animation,Matrix,cowplot,ggplot2,GGally,fastmatch,intergraph,
-         sna,tnet,WDI,network,xergm,xergm.common,networkDynamic,ndtv
+         reshape2,maps,blockmodeling,igraph,utils,plyr,dplyr,
+         statnet,animation,Matrix,cowplot,ggplot2,GGally,
+         fastmatch,intergraph,sna,tnet,WDI,network,xergm,
+         xergm.common,networkDynamic,ndtv,comtradr
 LazyData: true
 RoxygenNote: 6.0.1

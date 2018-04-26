@@ -184,10 +184,7 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
     G2<-igraph::delete.vertices(G1, which(igraph::V(G1)$region==NANumber))
     G3<-igraph::delete.vertices(G2, which(igraph::V(G2)$region==AggNumber))
 
-  } else {
-    G3<-igraph::delete.vertices(G1, igraph::V(G1)[igraph::V(G1)[region=AggNumber] ])
-    G3<-igraph::delete.vertices(G1, which(igraph::V(G1)$region==NANumber))
-  }
+  } else G3<-G1
 
   #Apply the threshold/backbone
   if(threshold==TRUE){

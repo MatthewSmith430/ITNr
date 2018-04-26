@@ -10,7 +10,7 @@
 #' require(intergraph)
 #'
 #' ##Create random International Trade Network (igraph object)
-#' ITN<-erdos.renyi.game(75,0.05,directed = TRUE)
+#' ITN<-erdos.renyi.game(50,0.05,directed = TRUE)
 #'
 #' ##Add edge weights
 #' E(ITN)$weight<-runif(ecount(ITN), 0, 1)
@@ -20,10 +20,11 @@
 #'
 
 ITNblock_se<-function(gs){
+  h<-as.integer(igraph::vcount(gs)/3)
   gsnet<-intergraph::asNetwork(gs)
   ec <- sna::equiv.clust(gsnet, mode="digraph")#,
                    # plabels=sna::network.vertex.names(gsnet))
-  bm <- sna::blockmodel(gsnet, ec, h=20)
+  bm <- sna::blockmodel(gsnet, ec, h=h)
   bm.mem<-bm$block.membership
   igraph::V(gs)$block.membership<-bm.mem
 

@@ -1,0 +1,12 @@
+.libPaths("F:/R")
+library(devtools)
+?build_win
+
+??news
+use_news_md()
+
+??cran
+library(usethis)
+use_cran_comments()
+??ignore
+use_build_ignore("NEWS.md")

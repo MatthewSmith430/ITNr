@@ -2,6 +2,12 @@
 #'
 #' @description This function takes (import) trade data downloaded using the comtradr package, cleans it and transforms it into a network.
 #' Adding a number of country level attributes to nodes in the network, including: regional partition, GDP, GDP per capita, GDP growth and FDI.
+#' However, it is important to note the limits of using comtradr to construct a network.
+#' Firstly when downloading the data, you must specify reporters and partners –
+#' yet you cannot put “all” for both – only for either reporters or partners.
+#' Then for the other you are limited to a character vector of country names,
+#' length five or fewer. Therefore, this will not give you a full network.
+#' However, this function can be applied to trade data downloaded from UN Comtrade (download csv and read into R as a dataframe), or any other trade data which is in the same format as the comtradr dataframe.
 #' @param DF Dataframe of trade data downloaded using the comtradr package
 #' @param YEAR Year
 #' @param threshold Apply a threshold - TRUE, Extract the backbone - FALSE
@@ -10,23 +16,24 @@
 #' @return International Trade Network - igraph object
 #' @examples \donttest{
 #'##download data using comtradr
-#'#library(comtradr)
+#'require(comtradr)
 #'
 #'##Download the trade data for tomatoes - code 0702
 #'##All countries, Year - 2016
-#'#ex_2 <- ct_search(reporters = "All",
-#'#                partners = "All",
-#'#                trade_direction = "imports",
-#'#                start_date = "2016-01-01",
-#'#                end_date = "2016-12-31",
-#'#                commod_codes = "0702")
+#'ex_2 <- ct_search(reporters = "All",
+#'               partners = c("USA","China",
+#'               "Germany","Canada","Mexico"),
+#'               trade_direction = "imports",
+#'               start_date = "2016-01-01",
+#'               end_date = "2016-12-31",
+#'               commod_codes = "0702")
 #'
 #'##this then gives a data frame which
 #'##we can clean using the following function:
 #'tomatoesITN<-Comtradrclean(ex_2,2016,TRUE,0.01)
 #'
 #'##We apply a threshold - only retaining ties that are at least 0.01%
-#'##of total tomato trade
+#'##of total tomatoes trade (amngst these countries)
 #'
 #' }
 Comtradrclean<-function(DF,YEAR,threshold,cutoff){
@@ -37,7 +44,9 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   Sender<-as.vector(H[,"partner_iso"])
   Receiver<-as.vector(H[,"reporter_iso"])
   VAL<-H[,"trade_value_usd"]
-  FULLel<-as.data.frame(cbind(Sender,Receiver,VAL))
+  VAL<-as.numeric(VAL)
+  FULLel<-as.data.frame(cbind(Sender,Receiver,VAL),stringsAsFactors = FALSE)
+  FULLel$VAL<-as.numeric(FULLel$VAL)
   WDIDataSeries<-WDI::WDI_data
   WDICountryInfo<-WDIDataSeries$country
   WD<-as.data.frame(WDICountryInfo)
@@ -85,6 +94,9 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   TotalCountryExports<-subset(FULLel,Receiver %in% "All")
   AllAllTotal<-as.matrix(subset(TotalCountryExports,Sender %in% "All"))
   GrandTotal<-as.numeric(AllAllTotal[,3])
+  if (is.numeric(isEmpty(GrandTotal))==FALSE){
+  GrandTotal<-sum(VAL)
+  }else GrandTotal<-GrandTotal
   Share<-list()
   for (i in 1:length(VAL)){
     Share[[i]]<-(VAL[i]/GrandTotal)*100
@@ -196,10 +208,7 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
     G2<-igraph::delete.vertices(G1, which(igraph::V(G1)$region==NANumber))
     G3<-igraph::delete.vertices(G2, which(igraph::V(G2)$region==AggNumber))
 
-  } else {
-    G3<-igraph::delete.vertices(G1, igraph::V(G1)[igraph::V(G1)[region=AggNumber] ])
-    G3<-igraph::delete.vertices(G1, which(igraph::V(G1)$region==NANumber))
-  }
+  } else G3<-G1
 
   #Apply the threshold/backbone
   if(threshold==TRUE){

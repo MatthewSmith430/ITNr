@@ -4,3 +4,6 @@
 ^README\.md$
 ^README_cache$
 ^README_files$
+^cran-comments\.md$
+
+^NEWS\.md$
