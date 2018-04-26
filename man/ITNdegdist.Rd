@@ -13,7 +13,7 @@ ITNdegdist(gs)
 Panel of ITN degree distribtuion plots
 }
 \description{
-This function plots the ITN degree distribtuion
+This function plots the ITN (probability) degree distribtuion
 }
 \examples{
 require(igraph)

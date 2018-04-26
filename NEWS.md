@@ -24,7 +24,3 @@ Corrected typos/infomation in documentation of the following functions:
 * ITNimvex
 
 * RegionalBrokerage
-
-* ELEnet16
-
-* ELEnetList

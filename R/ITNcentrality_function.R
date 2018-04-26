@@ -1,6 +1,6 @@
 #' @title ITN Centrality
 #'
-#' @description This function calculates a number of centrality metrics for the International Trade Network (ITN)
+#' @description This function calculates a number of centrality metrics for the weighted International Trade Network (ITN)
 #' @param gs International Trade Network - igraph object
 #' @export
 #' @return Table of centrality results (dataframe)
