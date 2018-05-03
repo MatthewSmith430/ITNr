@@ -22,3 +22,11 @@ build_win(pkg = ".", version = "R-release")
 ?release
 ?release_checks
 release(spelling = NULL)
+
+
+## In the future if you do the reverse check
+##do it on the work computer!
+devtools::revdep_check()
+
+devtools::install_github(repo = 'hadley/emo')
+emo::ji("poop")
