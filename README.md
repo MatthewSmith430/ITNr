@@ -1,4 +1,4 @@
-ITNr
+ITNr <img src="man/figures/logo.png" width="160px" align="right" />
 ================
 
 ITNr - International Trade Network (ITN) analysis in R
