@@ -24,3 +24,6 @@ Corrected typos/infomation in documentation of the following functions:
 * ITNimvex
 
 * RegionalBrokerage
+
+# ITNr 0.3.0
+Changed so does not import ndtv or statnet
