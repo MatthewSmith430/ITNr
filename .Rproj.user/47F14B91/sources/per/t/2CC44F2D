@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1539291785268.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2654435787",
+    "id" : "2CC44F2D",
+    "lastKnownWriteTime" : 1539291798,
+    "last_content_update" : 1539291798649,
+    "path" : "~/GitHub/ITNr/R/ITN_map_plot_function.R",
+    "project_path" : "R/ITN_map_plot_function.R",
+    "properties" : {
+        "cursorPosition" : "4,18",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
