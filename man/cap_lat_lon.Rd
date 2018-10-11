@@ -8,6 +8,6 @@
 cap_lat_lon
 }
 \description{
-Dataframe of captital city latitude and longitude coordinates
+Dataframe of capital city latitude and longitude coordinates
 }
 \keyword{datasets}

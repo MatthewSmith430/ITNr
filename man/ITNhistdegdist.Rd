@@ -10,10 +10,10 @@ ITNhistdegdist(gs)
 \item{gs}{International Trade Network - igraph object}
 }
 \value{
-Panel of ITN histogram degree distribtuion plots
+Panel of ITN histogram degree distribution plots
 }
 \description{
-This function plots the histogram degree distribtuion for the ITN
+This function plots the histogram degree distribution for the ITN
 }
 \examples{
 require(igraph)

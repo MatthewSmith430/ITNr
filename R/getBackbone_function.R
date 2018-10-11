@@ -2,7 +2,7 @@
 #'
 #' @description This function extracts the backbone of a network
 #' @param G igraph network
-#' @param alpha Signifcance level
+#' @param alpha Significance level
 #' @param directed Default is TRUE
 #' @export
 #' @return Backbone of the network

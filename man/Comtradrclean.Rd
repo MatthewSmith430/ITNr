@@ -2,7 +2,7 @@
 % Please edit documentation in R/Comtradrclean_function.R
 \name{Comtradrclean}
 \alias{Comtradrclean}
-\title{Comtrader data clean}
+\title{Comtradr data clean}
 \usage{
 Comtradrclean(DF, YEAR, threshold, cutoff)
 }

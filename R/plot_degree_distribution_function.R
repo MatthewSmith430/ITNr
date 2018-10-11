@@ -1,10 +1,10 @@
 #' @title Plot Degree Distribution
 #'
-#' @description This function plots degree distribtuion for any graph
+#' @description This function plots degree distribution for any graph
 #' @param graph igraph object
 #' @param a mode - "in","out","all
 #' @export
-#' @return Panel of ITN degree distribtuion plots
+#' @return Panel of ITN degree distribution plots
 #' @examples
 #' require(igraph)
 #' ##Create random International Trade Network (igraph object)

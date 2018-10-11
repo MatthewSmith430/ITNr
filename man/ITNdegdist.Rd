@@ -10,7 +10,7 @@ ITNdegdist(gs)
 \item{gs}{International Trade Network - igraph object}
 }
 \value{
-Panel of ITN degree distribtuion plots
+Panel of ITN degree distribution plots
 }
 \description{
 This function plots the ITN (probability) degree distribtuion

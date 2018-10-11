@@ -12,10 +12,10 @@ plot_degree_distribution(graph, a)
 \item{a}{mode - "in","out","all}
 }
 \value{
-Panel of ITN degree distribtuion plots
+Panel of ITN degree distribution plots
 }
 \description{
-This function plots degree distribtuion for any graph
+This function plots degree distribution for any graph
 }
 \examples{
 require(igraph)

@@ -3,7 +3,7 @@
 #' @description This function plots the ITN (probability) degree distribtuion
 #' @param gs International Trade Network - igraph object
 #' @export
-#' @return Panel of ITN degree distribtuion plots
+#' @return Panel of ITN degree distribution plots
 #' @examples
 #' require(igraph)
 #'

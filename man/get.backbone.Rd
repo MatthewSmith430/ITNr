@@ -9,7 +9,7 @@ get.backbone(G, alpha, directed = TRUE)
 \arguments{
 \item{G}{igraph network}
 
-\item{alpha}{Signifcance level}
+\item{alpha}{Significance level}
 
 \item{directed}{Default is TRUE}
 }

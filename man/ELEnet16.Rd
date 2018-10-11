@@ -3,12 +3,12 @@
 \docType{data}
 \name{ELEnet16}
 \alias{ELEnet16}
-\title{Electical Automtoive Goods 2016 Network}
+\title{Electrical Automotive Goods 2016 Network}
 \usage{
 ELEnet16
 }
 \description{
-Electical Automotive Goods 2016 Network. Electrical automotive goods category as defined by Amighini & Gogoni (2014)
+Electrical Automotive Goods 2016 Network. Electrical automotive goods category as defined by Amighini & Gogoni (2014)
 }
 \references{
 Amighini, A. and Gorgoni, S. (2014) The International Reorganisation of Auto Production, The World Economy, 37(7), pp. 923–952.

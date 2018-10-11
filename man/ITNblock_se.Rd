@@ -10,10 +10,10 @@ ITNblock_se(gs)
 \item{gs}{International Trade Network - igraph object}
 }
 \value{
-List object containing block memebrship and strucutural equivalence matrix results
+List object containing block membership and structural equivalence matrix results
 }
 \description{
-This function calculates block membership for ITN and strucutral equivalence between countries
+This function calculates block membership for ITN and structural equivalence between countries
 }
 \examples{
 require(igraph)

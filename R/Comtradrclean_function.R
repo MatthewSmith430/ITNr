@@ -1,4 +1,4 @@
-#' @title Comtrader data clean
+#' @title Comtradr data clean
 #'
 #' @description This function takes (import) trade data downloaded using the comtradr package, cleans it and transforms it into a network.
 #' Adding a number of country level attributes to nodes in the network, including: regional partition, GDP, GDP per capita, GDP growth and FDI.

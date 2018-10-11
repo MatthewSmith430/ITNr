@@ -1,9 +1,9 @@
 #' @title ITN Histogram Degree Distribution
 #'
-#' @description This function plots the histogram degree distribtuion for the ITN
+#' @description This function plots the histogram degree distribution for the ITN
 #' @param gs International Trade Network - igraph object
 #' @export
-#' @return Panel of ITN histogram degree distribtuion plots
+#' @return Panel of ITN histogram degree distribution plots
 #' @examples
 #' require(igraph)
 #'

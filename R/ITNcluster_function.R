@@ -3,7 +3,7 @@
 #' @description This function calculates cluster membership for ITN and compares with regional groupings
 #' @param gs International Trade Network - igraph object (with region attribute)
 #' @export
-#' @return Cluster object containing various cluster memebrship and correlation results
+#' @return Cluster object containing various cluster membership and correlation results
 #' @examples\donttest{
 #' ##Load ITN
 #' data(ELEnet16)

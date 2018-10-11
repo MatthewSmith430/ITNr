@@ -10,7 +10,7 @@ ITNcluster(gs)
 \item{gs}{International Trade Network - igraph object (with region attribute)}
 }
 \value{
-Cluster object containing various cluster memebrship and correlation results
+Cluster object containing various cluster membership and correlation results
 }
 \description{
 This function calculates cluster membership for ITN and compares with regional groupings

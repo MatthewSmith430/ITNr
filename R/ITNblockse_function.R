@@ -1,9 +1,9 @@
 #' @title ITN Blockmodel & Structural Equivalence
 #'
-#' @description This function calculates block membership for ITN and strucutral equivalence between countries
+#' @description This function calculates block membership for ITN and structural equivalence between countries
 #' @param gs International Trade Network - igraph object
 #' @export
-#' @return List object containing block memebrship and strucutural equivalence matrix results
+#' @return List object containing block membership and structural equivalence matrix results
 #' @examples
 #' require(igraph)
 #' require(sna)

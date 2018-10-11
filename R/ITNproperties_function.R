@@ -62,7 +62,7 @@ ITNproperties<-function(gs){
     Out.Degree.Centralisation=DegOutCen$centralization,
     In.Degree.Centralisation=DegInCen$centralization,
     All.Degree.Centralisation=DegAllCen$centralization,
-    clustering.coefficent.transitivity=CC,
+    clustering.coefficient.transitivity=CC,
     Clustering.Weighted=WeightedClustering,
     Region.Homophily=RegionHomophily,
     Degree.Assortativity=DegAssort
@@ -84,7 +84,7 @@ ITNproperties<-function(gs){
     "Out.Degree.Centralisation",
     "In.Degree.Centralisation",
     "All.Degree.Centralisation",
-    "Clustering.coefficent.transitivity",
+    "Clustering.coefficient.transitivity",
     "Clustering.Weighted",
     "Region.Homophily",
     "Degree.Assortativity")
