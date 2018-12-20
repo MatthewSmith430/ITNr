@@ -14,13 +14,13 @@
 #' plot_degree_distribution(ITN,"in")
 
 plot_degree_distribution <-function(graph,a) {
-  d = igraph::degree(graph, mode = a)
-  dd = igraph::degree.distribution(graph, mode = a, cumulative = FALSE)
-  degree = 1:max(d)
-  probability = dd[-1]
-  nonzero.position = which(probability != 0)
-  probability = probability[nonzero.position]
-  degree = degree[nonzero.position]
+  d <- igraph::degree(graph, mode = a)
+  dd <- igraph::degree.distribution(graph, mode = a, cumulative = FALSE)
+  degree <- 1:max(d)
+  probability <- dd[-1]
+  nonzero.position <- which(probability != 0)
+  probability <- probability[nonzero.position]
+  degree <- degree[nonzero.position]
 
   TYPE<-paste0("Degree_",a)
   TITLErev<-paste0("Degree Distribution_",a)

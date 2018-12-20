@@ -27,3 +27,7 @@ Corrected typos/infomation in documentation of the following functions:
 
 # ITNr 0.3.0
 Changed so does not import ndtv or statnet
+
+# ITNr 0.4.0
+
+* Replace `ldply` with `purrr::map_df(list,as_data_frame)` 
