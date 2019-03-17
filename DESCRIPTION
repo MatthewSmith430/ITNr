@@ -13,4 +13,4 @@ Imports: stats,circlize,GoodmanKruskal,graphics,RColorBrewer,
          cowplot,ggplot2,GGally,fastmatch,intergraph,comtradr,
          sna,tnet,WDI,xergm.common,networkDynamic
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

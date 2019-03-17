@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1550927264246.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2011163051",
+    "id" : "EF6E36FD",
+    "lastKnownWriteTime" : 1550927278,
+    "last_content_update" : 1550927277683,
+    "path" : "F:/GitHub/ITNr/R/WITSclean_function.R",
+    "project_path" : "R/WITSclean_function.R",
+    "properties" : {
+        "cursorPosition" : "212,50",
+        "scrollLine" : "209"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
