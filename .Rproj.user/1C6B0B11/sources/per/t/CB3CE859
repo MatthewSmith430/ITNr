@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1565025268766.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "316222527",
+    "id" : "CB3CE859",
+    "lastKnownWriteTime" : 1565025323,
+    "last_content_update" : 1565025323627,
+    "path" : "C:/Users/ms3453n/OneDrive - University of Greenwich/GitHub/ITNr/R/mixing_matrix_igraph_function.R",
+    "project_path" : "R/mixing_matrix_igraph_function.R",
+    "properties" : {
+        "cursorPosition" : "63,0",
+        "scrollLine" : "47",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

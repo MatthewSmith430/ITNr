@@ -1,3 +1,25 @@
+#' @title Gould & Fernandez (1989) Brokerage Roles path list
+#'
+#' @description This function calculates returns all the Gould & Fernandez (1989) brokerage paths for an attribute
+#' @param gs International Trade Network - igraph object
+#' @param attrname Attribute name
+#' @export
+#' @return List of path dataframes: Coordinator, Representative, Gatekeeper, Consultant & Liaison
+#' @examples
+#' require(igraph)
+#' ##Create random network (igraph object)
+#' gs<-erdos.renyi.game(75,0.05,directed = TRUE)
+#'
+#' ##Add vertex names
+#' V(gs)$name<-1:vcount(gs)
+#'
+#' ## Add an attribute
+#' V(gs)$letters<- rep(LETTERS[1:5],15)
+#'
+#' ##Calculate the GF results
+#' GF_PATH<-GF_path_list(gs,"letters")
+#'
+
 GF_path_list<-function(gs,attrname){
   sub<-igraph::make_graph(c(1,2,2,3),directed=TRUE)
   NET<-igraph::simplify(gs)
@@ -27,7 +49,7 @@ GF_path_list<-function(gs,attrname){
 
   #DATA2<-DATA2[DATA2$`Number of Edges` == 2,]
 
-  V(NET)$id<-1:length(V(NET)$name)
+  igraph::V(NET)$id<-1:length(igraph::V(NET)$name)
   Vert<-igraph::get.data.frame(NET, what = "vertices")
 
   DATA2$`1`<-Vert$name[match(DATA2$`1`,Vert$id)]

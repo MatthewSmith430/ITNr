@@ -1,3 +1,24 @@
+#' @title Gould & Fernandez (1989) Brokerage Roles Dataframe
+#'
+#' @description This function calculates the Gould & Fernandez (1989) brokerage roles for an attribute
+#' @param gs International Trade Network - igraph object
+#' @param attrname Attribute name
+#' @export
+#' @return Table of Gould-Fernandez results (dataframe)
+#' @examples
+#' require(igraph)
+#' ##Create random network (igraph object)
+#' gs<-erdos.renyi.game(75,0.05,directed = TRUE)
+#'
+#' ##Add vertex names
+#' V(gs)$name<-1:vcount(gs)
+#'
+#' ## Add an attribute
+#' V(gs)$letters<- rep(LETTERS[1:5],15)
+#'
+#' ##Calculate the GF results
+#' GF_results<-GF_dataframe(gs,"letters")
+#'
 GF_dataframe<-function(gs,attrname){
   sub<-igraph::make_graph(c(1,2,2,3),directed=TRUE)
   NET<-igraph::simplify(gs)
@@ -27,7 +48,7 @@ GF_dataframe<-function(gs,attrname){
 
   #DATA2<-DATA2[DATA2$`Number of Edges` == 2,]
 
-  V(NET)$id<-1:length(V(NET)$name)
+  igraph::V(NET)$id<-1:length(igraph::V(NET)$name)
   Vert<-igraph::get.data.frame(NET, what = "vertices")
 
   DATA2$`1`<-Vert$name[match(DATA2$`1`,Vert$id)]
@@ -47,7 +68,7 @@ GF_dataframe<-function(gs,attrname){
 
   NEWDF$CHECK<-unlist(CONNECT_LIST)
 
-  NEWDF3<-dplyr::filter(NEWDF,CHECK!=TRUE)
+  NEWDF3<-dplyr::filter(NEWDF,NEWDF$CHECK!=TRUE)
 
   NEWDF3$CHECK<-NULL
 
@@ -62,7 +83,7 @@ GF_dataframe<-function(gs,attrname){
 
   NEWDF3$CHECK<-unlist(CONNECT_LIST_2)
 
-  NEWDF2<-dplyr::filter(NEWDF3,CHECK!=TRUE)
+  NEWDF2<-dplyr::filter(NEWDF3,NEWDF3$CHECK!=TRUE)
 
   NEWDF2$CHECK<-NULL
 
@@ -100,23 +121,23 @@ GF_dataframe<-function(gs,attrname){
                           NEWDF2$REGION1!=NEWDF2$REGION2)
 
   COOR_IND<-dplyr::group_by(dplyr::select(COOR_DF,CountryBROKER),CountryBROKER)
-  COOR_IND<-unique(add_tally(COOR_IND))
+  COOR_IND<-unique(dplyr::add_tally(COOR_IND))
   colnames(COOR_IND)<-c("name","Coordinator")
 
   REP_IND<-dplyr::group_by(dplyr::select(REP_DF,CountryBROKER),CountryBROKER)
-  REP_IND<-unique(add_tally(REP_IND))
+  REP_IND<-unique(dplyr::add_tally(REP_IND))
   colnames(REP_IND)<-c("name","Representative")
 
   GATE_IND<-dplyr::group_by(dplyr::select(GATE_DF,CountryBROKER),CountryBROKER)
-  GATE_IND<-unique(add_tally(GATE_IND))
+  GATE_IND<-unique(dplyr::add_tally(GATE_IND))
   colnames(GATE_IND)<-c("name","Gatekeeper")
 
   ITIN_IND<-dplyr::group_by(dplyr::select(ITIN_DF,CountryBROKER),CountryBROKER)
-  ITIN_IND<-unique(add_tally(ITIN_IND))
+  ITIN_IND<-unique(dplyr::add_tally(ITIN_IND))
   colnames(ITIN_IND)<-c("name","Consultant")
 
   LIA_IND<-dplyr::group_by(dplyr::select(LIA_DF,CountryBROKER),CountryBROKER)
-  LIA_IND<-unique(add_tally(LIA_IND))
+  LIA_IND<-unique(dplyr::add_tally(LIA_IND))
   colnames(LIA_IND)<-c("name","Liaison")
 
   MERGE1<-merge(GROUP_ID,COOR_IND,by.all="name",all.x=TRUE)

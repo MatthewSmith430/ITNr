@@ -31,3 +31,20 @@ Changed so does not import ndtv or statnet
 # ITNr 0.4.0
 
 * Replace `ldply` with `purrr::map_df(list,as_data_frame)` 
+
+# ITNr 0.5.0
+Gould-Fernandez analysis functions:  
+
+* Gould-Fernandez count of roles dataframe  
+
+* Gould-Fernandez list of brokerage paths
+
+E-I index analysis functions:  
+
+ * EI Network level  
+ 
+ * EI Group level  
+ 
+ * EI Individual Level  
+ 
+ * Mixing Matrix

@@ -21,7 +21,7 @@
 #' }
 WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   DATAV1<-utils::read.csv(CSVfile)
-  DATA<-dplyr::filter(DATAV1,Year==YEAR)
+  DATA<-dplyr::filter(DATAV1,DATAV1$Year==YEAR)
   Sender<-as.vector(DATA[,"PartnerISO3"])
   Receiver<-as.vector(DATA[,"ReporterISO3"])
   VAL<-DATA[,"TradeValue.in.1000.USD"]
