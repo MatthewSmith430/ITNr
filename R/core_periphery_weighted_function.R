@@ -95,8 +95,8 @@ core_periphery_weighted<-function(gs,type){
                         sigma_all=sigma_all)
       RESlist[[i]]<-RESdf
     }
-    RESULT<-purrr::map_df(RESlist,data.frame)#plyr::ldply(RESlist,data.frame)
-    #RESULT<-dplyr::as_data_frame(RESULT)
+    RESULT<-plyr::ldply(RESlist,data.frame)
+    RESULT<-dplyr::as_data_frame(RESULT)
     RANK<-igraph::vcount(gs)+1-rank(DF$Weighted.Degree.All)
     RANKout<-igraph::vcount(gs)+1-rank(DF$Weighted.Out.Degree)
     RANKin<-igraph::vcount(gs)+1-rank(DF$Weighted.In.Degree)
@@ -175,8 +175,8 @@ core_periphery_weighted<-function(gs,type){
                         sigma_all=sigma_all)
       RESlist[[i]]<-RESdf
     }
-    RESULT<-purrr::map_df(RESlist,data.frame)#plyr::ldply(RESlist,data.frame)
-    #RESULT<-dplyr::as_data_frame(RESULT)
+    RESULT<-plyr::ldply(RESlist,data.frame)
+    RESULT<-dplyr::as_data_frame(RESULT)
     RANK<-igraph::vcount(gs)+1-rank(DF$Weighted.Degree.All)
     RESULT_rank<-cbind(RESULT,RANK)
 

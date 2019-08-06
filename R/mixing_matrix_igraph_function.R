@@ -30,17 +30,15 @@ mixing_matrix_igraph<-function(gs,attrname){
   }else{igraph::E(gs)$weight<-igraph::E(gs)$weight}
 
   EL<-igraph::get.data.frame(gs,what="edges")
-  PIC<-c("to","from","weight")
+  PIC<-c("from","to","weight")
   EL<-dplyr::select(EL,PIC)
   EL2<-EL
-
   EL2$to <- DF1$attr[match(EL2$to, DF1$name)]
   EL2$from <- DF1$attr[match(EL2$from, DF1$name)]
   EL3<-EL2[,1:2]
-  EL3a<-dplyr::summarise(
-    dplyr::group_by(EL3,to,from),
-    length(from))
-  colnames(EL3a)<-c("to","from","weight")
+  HR<-c("from","to")
+  EL3a<-plyr::ddply(EL3,HR,nrow)
+  colnames(EL3a)<-c("from","to","weight")
 
 
   if (type==TRUE){

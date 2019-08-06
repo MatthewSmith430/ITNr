@@ -98,8 +98,9 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   for (i in 1:length(VAL)){
     Share[[i]]<-(VAL[i]/GrandTotal)*100
   }
-  Share <-suppressWarnings(purrr::map_df(Share,data.frame))
 
+  Share <-plyr::ldply(Share, data.frame)
+  Share<-dplyr::as_data_frame(Share)
   colnames(Share)<-"Share"
   FULLel<-cbind(FULLel,Share)
 
@@ -149,17 +150,19 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
     GDPgrowthListAttr[[i]]<-subset(WDIGDPgrowth3,WDIGDPgrowth3$iso3 %in% CountryNames[i])
     FDIListAttr[[i]]<-subset(WDIFDI3,WDIFDI3$iso3 %in% CountryNames[i])
   }
-  dfREG<-suppressWarnings(purrr::map_df(RegionListAttr,data.frame))
 
-  dfINC<-suppressWarnings(purrr::map_df(IncomeListAttr,data.frame))
-
-  dfGDP<-suppressWarnings(purrr::map_df(GDPListattr,data.frame))
-
-  dfGDPPC<-suppressWarnings(purrr::map_df(GDPPCListattr,data.frame))
-
-  dfGDPgrowth<-suppressWarnings(purrr::map_df(GDPgrowthListAttr,data.frame))
-
-  dfFDI<-suppressWarnings(purrr::map_df(FDIListAttr,data.frame))
+  dfREG<-plyr::ldply(RegionListAttr, data.frame)
+  dfREG<-dplyr::as_data_frame(dfREG)
+  dfINC<-plyr::ldply(IncomeListAttr,data.frame)
+  dfINC<-dplyr::as_data_frame(dfINC)
+  dfGDP<-plyr::ldply(GDPListattr,data.frame)
+  dfGDP<-dplyr::as_data_frame(dfGDP)
+  dfGDPPC<-plyr::ldply(GDPPCListattr, data.frame)
+  dfGDPPC<-dplyr::as_data_frame(dfGDPPC)
+  dfGDPgrowth<-plyr::ldply(GDPgrowthListAttr, data.frame)
+  dfGDPgrowth<-dplyr::as_data_frame(dfGDPgrowth)
+  dfFDI<-plyr::ldply(FDIListAttr, data.frame)
+  dfFDI<-dplyr::as_data_frame(dfFDI)
 
   target<-CountryNames
 

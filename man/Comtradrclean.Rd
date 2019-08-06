@@ -7,7 +7,7 @@
 Comtradrclean(DF, YEAR, threshold, cutoff)
 }
 \arguments{
-\item{DF}{Dataframe of trade data downloaded using the comtradr package}
+\item{DF}{Dataframe of trade data downloaded (potentially using the comtradr package)}
 
 \item{YEAR}{Year}
 
@@ -19,10 +19,10 @@ Comtradrclean(DF, YEAR, threshold, cutoff)
 International Trade Network - igraph object
 }
 \description{
-This function takes (import) trade data downloaded using the comtradr package, cleans it and transforms it into a network.
+This function takes (import) trade data downloaded from comtrade - potentially using the comtradr package, cleans it and transforms it into a network.
 Adding a number of country level attributes to nodes in the network, including: regional partition, GDP, GDP per capita, GDP growth and FDI.
 However, it is important to note the limits of using comtradr to construct a network.
-Firstly when downloading the data, you must specify reporters and partners –
+Firstly when downloading the data with comtradr, you must specify reporters and partners –
 yet you cannot put “all” for both – only for either reporters or partners.
 Then for the other you are limited to a character vector of country names,
 length five or fewer. Therefore, this will not give you a full network.
@@ -31,17 +31,17 @@ However, this function can be applied to trade data downloaded from UN Comtrade 
 \examples{
 \donttest{
 ##download data using comtradr
-require(comtradr)
+#require(comtradr)
 
 ##Download the trade data for tomatoes - code 0702
 ##All countries, Year - 2016
-ex_2 <- ct_search(reporters = "All",
-              partners = c("USA","China",
-              "Germany","Canada","Mexico"),
-              trade_direction = "imports",
-              start_date = "2016-01-01",
-              end_date = "2016-12-31",
-              commod_codes = "0702")
+#ex_2 <- ct_search(reporters = "All",
+#               partners = c("USA","China",
+#               "Germany","Canada","Mexico"),
+#               trade_direction = "imports",
+#               start_date = "2016-01-01",
+#               end_date = "2016-12-31",
+#               commod_codes = "0702")
 
 ##this then gives a data frame which
 ##we can clean using the following function:

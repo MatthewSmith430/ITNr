@@ -9,7 +9,7 @@ Depends: R (>= 2.15.1), network
 License: GPL-3
 Encoding: UTF-8
 Imports: stats,circlize,GoodmanKruskal,graphics,RColorBrewer,
-         reshape2,maps,blockmodeling,igraph,utils,dplyr,purrr,
+         reshape2,maps,blockmodeling,igraph,utils,dplyr,plyr,
          cowplot,ggplot2,GGally,fastmatch,intergraph,
          sna,tnet,WDI,xergm.common,networkDynamic
 LazyData: true

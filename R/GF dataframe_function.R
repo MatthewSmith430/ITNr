@@ -38,7 +38,7 @@ GF_dataframe<-function(gs,attrname){
     subCheck<-igraph::induced_subgraph(NET, VEC)
     ISO[[i]]<-igraph::ecount(subCheck)
   }
-  DFedges<-suppressWarnings(purrr::map_df(ISO,data.frame))
+  DFedges<-plyr::ldply(ISO,data.frame)
   colnames(DFedges)<-"Number of Edges"
   DATA<-cbind(EL2,DFedges)
 
@@ -120,7 +120,8 @@ GF_dataframe<-function(gs,attrname){
                           NEWDF2$REGION_BROKER!=NEWDF2$REGION2&
                           NEWDF2$REGION1!=NEWDF2$REGION2)
 
-  COOR_IND<-dplyr::group_by(dplyr::select(COOR_DF,CountryBROKER),CountryBROKER)
+  COOR_IND<-dplyr::group_by(dplyr::select(COOR_DF,CountryBROKER),
+                            CountryBROKER)
   COOR_IND<-unique(dplyr::add_tally(COOR_IND))
   colnames(COOR_IND)<-c("name","Coordinator")
 

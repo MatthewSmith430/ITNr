@@ -50,7 +50,7 @@ ei_ind<-function(gs,attrname){
     GROUP_CENT_LIST[[i]]<-GC
   }
 
-  GROUP_CENT_DF<-suppressWarnings(purrr::map_df(GROUP_CENT_LIST,data.frame))
+  GROUP_CENT_DF<-plyr::ldply(GROUP_CENT_LIST,data.frame)
 
   FULL_DF<-merge(FULL_CENT,GROUP_CENT_DF,by="name")
 

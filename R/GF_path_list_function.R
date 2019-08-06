@@ -39,7 +39,7 @@ GF_path_list<-function(gs,attrname){
     subCheck<-igraph::induced_subgraph(NET, VEC)
     ISO[[i]]<-igraph::ecount(subCheck)
   }
-  DFedges<-suppressWarnings(purrr::map_df(ISO,data.frame))
+  DFedges<-plyr::ldply(ISO,data.frame)
   colnames(DFedges)<-"Number of Edges"
   DATA<-cbind(EL2,DFedges)
 

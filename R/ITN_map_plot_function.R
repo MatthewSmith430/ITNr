@@ -27,7 +27,7 @@ ITN_map_plot<-function(gs){
     LATLONGlist[[i]]<-LL
     }
 
-  LATLONGdf<-purrr::map_df(LATLONGlist,data.frame)#plyr::ldply(LATLONGlist,data.frame)
+  LATLONGdf<-plyr::ldply(LATLONGlist,data.frame)
   rownames(LATLONGdf)<-NAME
   LATLONGdf$name<-rownames(LATLONGdf)
 

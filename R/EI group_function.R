@@ -49,7 +49,7 @@ ei_group<-function(gs,attrname){
                          group.ei=EIG)
     GROUP_DF_list[[i]]<-GROUP_DF
   }
-  group_EI<-suppressWarnings(purrr::map_df(GROUP_DF_list,data.frame))
+  group_EI<-plyr::ldply(GROUP_DF_list,data.frame)
 
   group_EI<-round_df(group_EI,4)
 
