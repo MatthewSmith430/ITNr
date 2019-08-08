@@ -23,7 +23,19 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   DATAV1<-utils::read.csv(CSVfile)
   DATA<-dplyr::filter(DATAV1,DATAV1$Year==YEAR)
   Sender<-as.vector(DATA[,"PartnerISO3"])
+  Sender<- gsub('SER', 'SRB', Sender)
+  Sender<- gsub('TMP', 'TLS', Sender)
+  Sender<- gsub('ZAR', 'COD', Sender)
+  Sender<- gsub('ROM', 'ROU', Sender)
+  Sender<- gsub('SUD', 'SDN', Sender)
+  Sender<- gsub('MNT', 'MNT', Sender)
   Receiver<-as.vector(DATA[,"ReporterISO3"])
+  Receiver<- gsub('SER', 'SRB', Receiver)
+  Receiver<- gsub('TMP', 'TLS', Receiver)
+  Receiver<- gsub('ZAR', 'COD', Receiver)
+  Receiver<- gsub('ROM', 'ROU', Receiver)
+  Receiver<- gsub('SUD', 'SDN', Receiver)
+  Receiver<- gsub('MNT', 'MNE', Receiver)
   VAL<-DATA[,"TradeValue.in.1000.USD"]
 
   FULLel<-data.frame(Sender=Sender,
@@ -40,7 +52,9 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   CountryIncome<-cbind(COUNTRYlist,INCOMElist)
 
   ##List all of the aggregate entities.
-  AggReg<-c("All","EUN","UNS","OAS","FRE","SPE")
+  AggReg<-c("All","EUN","UNS","OAS","FRE",
+            "SPE","VAT","UMI","ATA","PCN","AIA","COK",
+            "SHN","MSR","NIU")
   AggRegMat<-matrix("Aggregates",length(AggReg),2)
 
   AggRegMat[,1]<-AggReg
@@ -258,6 +272,10 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
 
   }
   G5<-igraph::delete.vertices(G4, which(igraph::degree(G4)==0))
+  EW<-igraph::E(G5)$weight
+  EW2<-as.numeric(EW)
+  G6<-igraph::delete_edge_attr(G5,"weight")
+  igraph::E(G6)$weight<-EW2
 
-  return(G5)
+  return(G6)
 }
