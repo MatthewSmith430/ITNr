@@ -100,7 +100,7 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   }
 
   Share <-plyr::ldply(Share, data.frame)
-  Share<-dplyr::as_data_frame(Share)
+  #Share<-dplyr::as_data_frame(Share)
   colnames(Share)<-"Share"
   FULLel<-cbind(FULLel,Share)
 
@@ -152,28 +152,32 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   }
 
   dfREG<-plyr::ldply(RegionListAttr, data.frame)
-  dfREG<-dplyr::as_data_frame(dfREG)
+  #dfREG<-dplyr::as_data_frame(dfREG)
   dfINC<-plyr::ldply(IncomeListAttr,data.frame)
-  dfINC<-dplyr::as_data_frame(dfINC)
+  #dfINC<-dplyr::as_data_frame(dfINC)
   dfGDP<-plyr::ldply(GDPListattr,data.frame)
-  dfGDP<-dplyr::as_data_frame(dfGDP)
+  #dfGDP<-dplyr::as_data_frame(dfGDP)
   dfGDPPC<-plyr::ldply(GDPPCListattr, data.frame)
-  dfGDPPC<-dplyr::as_data_frame(dfGDPPC)
+  #dfGDPPC<-dplyr::as_data_frame(dfGDPPC)
   dfGDPgrowth<-plyr::ldply(GDPgrowthListAttr, data.frame)
-  dfGDPgrowth<-dplyr::as_data_frame(dfGDPgrowth)
+  #dfGDPgrowth<-dplyr::as_data_frame(dfGDPgrowth)
   dfFDI<-plyr::ldply(FDIListAttr, data.frame)
-  dfFDI<-dplyr::as_data_frame(dfFDI)
+  #dfFDI<-dplyr::as_data_frame(dfFDI)
 
   target<-CountryNames
 
   dfREG<-dfREG[match(target,dfREG$COUNTRYlist),]
   RR<-as.vector(dfREG[,2])
-  RR2<-as.factor(RR)
+  RR1<-c(RR)
+  RR1<-unlist(RR1)
+  RR2<-as.factor(RR1)
   H<-as.character(dfREG$REGIONlist)
 
   dfINC<-dfINC[match(target,dfINC$COUNTRYlist),]
   KK<-as.vector(dfINC[,2])
-  KK2<-as.factor(KK)
+  KK1<-c(KK)
+  KK1<-unlist(KK1)
+  KK2<-as.factor(KK1)
   U<-as.character(dfINC$INCOMElist)
 
   A<-levels(RR2)
