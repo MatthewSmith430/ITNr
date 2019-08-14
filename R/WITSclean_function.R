@@ -28,7 +28,7 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   Sender<- gsub('ZAR', 'COD', Sender)
   Sender<- gsub('ROM', 'ROU', Sender)
   Sender<- gsub('SUD', 'SDN', Sender)
-  Sender<- gsub('MNT', 'MNT', Sender)
+  Sender<- gsub('MNT', 'MNE', Sender)
   Receiver<-as.vector(DATA[,"ReporterISO3"])
   Receiver<- gsub('SER', 'SRB', Receiver)
   Receiver<- gsub('TMP', 'TLS', Receiver)
@@ -54,7 +54,11 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   ##List all of the aggregate entities.
   AggReg<-c("All","EUN","UNS","OAS","FRE",
             "SPE","VAT","UMI","ATA","PCN","AIA","COK",
-            "SHN","MSR","NIU")
+            "SHN","MSR","NIU",
+            "BES","BLM","BUN","BVT","CCK","CXR","FLK",#Small regions
+            "HMD","IOT","NFK","SGS","TKL",#small regions
+            "ESH","SPM","ATF"
+            )
   AggRegMat<-matrix("Aggregates",length(AggReg),2)
 
   AggRegMat[,1]<-AggReg

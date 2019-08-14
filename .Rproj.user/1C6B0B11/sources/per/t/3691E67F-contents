@@ -42,21 +42,7 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   H<-stats::aggregate(trade_value_usd~reporter_iso+partner_iso, DATA, sum)
 
   Sender<-as.vector(H[,"partner_iso"])
-  Sender<- gsub('SER', 'SRB', Sender)
-  Sender<- gsub('TMP', 'TLS', Sender)
-  Sender<- gsub('ZAR', 'COD', Sender)
-  Sender<- gsub('ROM', 'ROU', Sender)
-  Sender<- gsub('SUD', 'SDN', Sender)
-  Sender<- gsub('MNT', 'MNE', Sender)
-
   Receiver<-as.vector(H[,"reporter_iso"])
-  Receiver<- gsub('SER', 'SRB', Receiver)
-  Receiver<- gsub('TMP', 'TLS', Receiver)
-  Receiver<- gsub('ZAR', 'COD', Receiver)
-  Receiver<- gsub('ROM', 'ROU', Receiver)
-  Receiver<- gsub('SUD', 'SDN', Receiver)
-  Receiver<- gsub('MNT', 'MNE', Receiver)
-
   VAL<-H[,"trade_value_usd"]
   VAL<-as.numeric(VAL)
   FULLel<-as.data.frame(cbind(Sender,Receiver,VAL),stringsAsFactors = FALSE)
@@ -75,7 +61,7 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
             "SHN","MSR","NIU",
             "BES","BLM","BUN","BVT","CCK","CXR","FLK",#Small regions
             "HMD","IOT","NFK","SGS","TKL", #small regions
-            "ESH","SPM","ATF"
+            "ESH","SPM"
   )
   AggRegMat<-matrix("Aggregates",length(AggReg),2)
   AggRegMat[,1]<-AggReg
