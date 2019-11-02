@@ -1,0 +1,15 @@
+library(igraph)
+library(ITNr)
+ITN<-erdos.renyi.game(50,0.05,directed = TRUE)
+E(ITN)$weight<-runif(ecount(ITN), 0, 1)
+V(ITN)$name<-1:vcount(ITN)
+ITNcp<-core_periphery_weighted(ITN,"directed")                      
+ITNcp_df<-ITNcp[[2]]
+gs<-ITNcp[[1]]
+V(gs)$core<-as.factor(V(gs)$all_cp)
+net<-asNetwork(gs)
+
+ggnet2(net,node.size = 3,
+       node.color = "core")
+
+plot(gs)

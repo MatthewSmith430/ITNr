@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1572199439543.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6023904D",
+    "lastKnownWriteTime" : 3982366460275219258,
+    "last_content_update" : 1572199439543,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "72CCB67C",
+        "caption" : "ITNcp_df",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=ITNcp_df&cache_key=72CCB67C",
+        "displayedObservations" : 50,
+        "environment" : "",
+        "object" : "ITNcp_df",
+        "preview" : 0,
+        "totalObservations" : 50,
+        "variables" : 10
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

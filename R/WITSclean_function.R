@@ -71,11 +71,11 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   ALL_AGG<-ALL_AGG$COUNTRYlist
   ALL_AGG<-as.vector(ALL_AGG)
 
-  WDIgdp1<-WDI::WDI(country="all",indicator = "NY.GDP.MKTP.CD", start = YEAR, end=YEAR )
+  WDIgdp1<-WDI::WDI(country="all",indicator = "NY.GDP.PCAP.KD", start = YEAR, end=YEAR )
   WDIgdp1<-as.data.frame(WDIgdp1,stringsAsFactors=FALSE)
   #WDIgdp1<-merge(WD,WDIgdp1,by="iso2c")
   WDIgdp1$iso3<-WD$iso3c[match(WDIgdp1$iso2c,WD$iso2c)]
-  WDIgdp2<-cbind(as.vector(WDIgdp1$iso3),as.vector(WDIgdp1$NY.GDP.MKTP.CD))
+  WDIgdp2<-cbind(as.vector(WDIgdp1$iso3),as.vector(WDIgdp1$NY.GDP.MKTP.KD))
   colnames(WDIgdp2)<-c("iso3","GDP")
   WDIgdp2<-as.data.frame(WDIgdp2,stringsAsFactors=FALSE)
 
@@ -86,10 +86,10 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   colnames(WDIGDPgrowth2)<-c("iso3","GDPgrowth")
   WDIGDPgrowth2<-as.data.frame(WDIGDPgrowth2,stringsAsFactors=FALSE)
 
-  WDIGDPPC1<-WDI::WDI(country="all",indicator = "NY.GDP.MKTP.PP.CD", start = YEAR, end=YEAR )
+  WDIGDPPC1<-WDI::WDI(country="all",indicator = "NY.GDP.PCAP.PP.KD", start = YEAR, end=YEAR )
   WDIGDPPC1<-as.data.frame(WDIGDPPC1,stringsAsFactors=FALSE)
   WDIGDPPC1$iso3<-WD$iso3c[match(WDIGDPPC1$iso2c,WD$iso2c)]
-  WDIGDPPC2<-cbind(as.vector(WDIGDPPC1$iso3),as.vector(WDIGDPPC1$NY.GDP.MKTP.PP.CD))
+  WDIGDPPC2<-cbind(as.vector(WDIGDPPC1$iso3),as.vector(WDIGDPPC1$NY.GDP.PCAP.PP.KD))
   colnames(WDIGDPPC2)<-c("iso3","GDPPC")
   WDIGDPPC2<-as.data.frame(WDIGDPPC2,stringsAsFactors=FALSE)
 
