@@ -75,14 +75,16 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   WDIgdp1<-as.data.frame(WDIgdp1,stringsAsFactors=FALSE)
   #WDIgdp1<-merge(WD,WDIgdp1,by="iso2c")
   WDIgdp1$iso3<-WD$iso3c[match(WDIgdp1$iso2c,WD$iso2c)]
-  WDIgdp2<-cbind(as.vector(WDIgdp1$iso3),as.vector(WDIgdp1$NY.GDP.MKTP.KD))
+  WDIgdp2<-cbind(as.vector(WDIgdp1$iso3),
+                 as.vector(WDIgdp1$NY.GDP.PCAP.KD))
   colnames(WDIgdp2)<-c("iso3","GDP")
   WDIgdp2<-as.data.frame(WDIgdp2,stringsAsFactors=FALSE)
 
   WDIGDPgrowth1<-WDI::WDI(country="all",indicator = "NY.GDP.MKTP.KD.ZG", start = YEAR, end=YEAR )
   WDIGDPgrowth1<-as.data.frame(WDIGDPgrowth1,stringsAsFactors=FALSE)
   WDIGDPgrowth1$iso3<-WD$iso3c[match(WDIGDPgrowth1$iso2c,WD$iso2c)]
-  WDIGDPgrowth2<-cbind(as.vector(WDIGDPgrowth1$iso3),as.vector(WDIGDPgrowth1$NY.GDP.MKTP.KD.ZG))
+  WDIGDPgrowth2<-cbind(as.vector(WDIGDPgrowth1$iso3),
+                       as.vector(WDIGDPgrowth1$NY.GDP.MKTP.KD.ZG))
   colnames(WDIGDPgrowth2)<-c("iso3","GDPgrowth")
   WDIGDPgrowth2<-as.data.frame(WDIGDPgrowth2,stringsAsFactors=FALSE)
 
