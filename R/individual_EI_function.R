@@ -38,7 +38,7 @@ ei_ind<-function(gs,attrname){
 
   for (i in 1:num_group){
     G<-GROUP[[i]]
-    GM<-dplyr::filter(GROUP_MEM,group==G)
+    GM<-dplyr::filter(GROUP_MEM,GROUP_MEM$group==G)
     SUB<-igraph::induced_subgraph(gs,GM$name)
     GC<-data.frame(name=igraph::V(SUB)$name,
                    group.out.degree=igraph::degree(SUB,mode = "out"),

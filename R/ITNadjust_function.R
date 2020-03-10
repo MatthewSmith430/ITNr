@@ -36,7 +36,10 @@ ITNadjust<-function(MATlist,j){
   NetMAT<-MATlist[[j]]
   for (z in 1:length(files2)){
     HMAT<-files2[z]
-    NetMAT<- xergm.common::adjust(NetMAT, HMAT, remove = FALSE,add=TRUE,value=0,returnlabels = FALSE)
+    HMAT<-HMAT[[1]]
+    NetMAT<- adjust_mat(NetMAT, HMAT,
+                        remove = FALSE,add=TRUE,
+                        value=0,returnlabels = FALSE)
   }
   NetMat<-NetMAT[,sort(colnames(NetMAT))]
   NetMAT<-NetMAT[sort(rownames(NetMAT)),]

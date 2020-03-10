@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583754272952.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2528460233",
+    "id" : "CABDA321",
+    "lastKnownWriteTime" : 1583754755,
+    "last_content_update" : 1583754755734,
+    "path" : "C:/Users/ms3453n/OneDrive - University of Greenwich/GitHub/ITNr/R/ITNadjust_function.R",
+    "project_path" : "R/ITNadjust_function.R",
+    "properties" : {
+        "cursorPosition" : "34,19",
+        "scrollLine" : "28"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

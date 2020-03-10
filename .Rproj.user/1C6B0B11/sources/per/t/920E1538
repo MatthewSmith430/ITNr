@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583665230639.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2798177498",
+    "id" : "920E1538",
+    "lastKnownWriteTime" : 1583674881,
+    "last_content_update" : 1583674881763,
+    "path" : "C:/Users/ms3453n/OneDrive - University of Greenwich/GitHub/ITNr/R/ITNcluster_function.R",
+    "project_path" : "R/ITNcluster_function.R",
+    "properties" : {
+        "cursorPosition" : "42,2",
+        "scrollLine" : "34"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

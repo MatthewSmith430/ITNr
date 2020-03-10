@@ -1,9 +1,9 @@
 #' @title ITN Cluster
 #'
-#' @description This function calculates cluster membership for ITN and compares with regional groupings
+#' @description This function calculates cluster membership for ITN
 #' @param gs International Trade Network - igraph object (with region attribute)
 #' @export
-#' @return Cluster object containing various cluster membership and correlation results
+#' @return Cluster object containing various cluster membership results
 #' @examples\donttest{
 #' ##Load ITN
 #' data(ELEnet16)
@@ -15,12 +15,12 @@
 ITNcluster<-function(gs){
   cfg <- igraph::cluster_fast_greedy(igraph::as.undirected(gs))
   mem<-as.vector(igraph::membership(cfg))
-  cluster.fast.greedy.mem<-mem
+  #cluster.fast.greedy.mem<-mem
   igraph::V(gs)$cluster.fast.greedy.mem<-mem
 
   CSC<-igraph::cluster_spinglass(gs)
   CSCmem<-CSC$membership
-  spinglass.com<-CSCmem
+  #spinglass.com<-CSCmem
   igraph::V(gs)$spinglass.com<-CSCmem
 
   infomap<-igraph::cluster_infomap(gs, e.weights = igraph::E(gs)$weight,
@@ -39,11 +39,12 @@ ITNcluster<-function(gs){
   NG2<-TAB$NewmanGirvan
   mat<-matrix(0, nrow=1,ncol = 3)
   #dfTEST<-data.frame()
-  mat[,1]<-GoodmanKruskal::GKtau(REG,SPIN)$tauyx
-  mat[,2]<-GoodmanKruskal::GKtau(REG,INFOmap)$tauyx
-  mat[,3]<-GoodmanKruskal::GKtau(REG,GREED)$tauyx
-  colnames(mat)<-c("RegSpin","RegInfoMap","RegFastGreedy")
-  rownames(mat)<-"GoodmanKruskal"
+  #ct1<-chisq.test(REG, SPIN)
+  #mat[,1]<-GoodmanKruskal::GKtau(REG,SPIN)$tauyx
+  #mat[,2]<-GoodmanKruskal::GKtau(REG,INFOmap)$tauyx
+  #mat[,3]<-GoodmanKruskal::GKtau(REG,GREED)$tauyx
+  #colnames(mat)<-c("RegSpin","RegInfoMap","RegFastGreedy")
+  #rownames(mat)<-"GoodmanKruskal"
   spinglass.com<-cbind(NAME,SPIN)
   spinglass.com<-as.data.frame(spinglass.com)
   infomap<-cbind(NAME,INFOmap)
@@ -54,8 +55,9 @@ ITNcluster<-function(gs){
   RESULTSclu<-list(
     "spinglass.com"=spinglass.com,
     "infomap"=infomap,
-    "cluster.fast.greedy.mem"=cluster.fast.greedy.mem,
-    "Region.Cluster.Correlation.Matrix"=mat)
+    "cluster.fast.greedy.mem"=cluster.fast.greedy.mem#,
+    #"Region.Cluster.Correlation.Matrix"=mat
+    )
   return(RESULTSclu)
 
 

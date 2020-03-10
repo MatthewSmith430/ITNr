@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583760224365.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4153852708",
+    "id" : "62101AE6",
+    "lastKnownWriteTime" : 1583760307,
+    "last_content_update" : 1583760307135,
+    "path" : "C:/Users/ms3453n/OneDrive - University of Greenwich/GitHub/ITNr/R/individual_EI_function.R",
+    "project_path" : "R/individual_EI_function.R",
+    "properties" : {
+        "cursorPosition" : "40,42",
+        "scrollLine" : "34"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583794297930.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "323819188",
+    "id" : "B51AAD50",
+    "lastKnownWriteTime" : 1538552333,
+    "last_content_update" : 1538552333,
+    "path" : "C:/Users/ms3453n/OneDrive - University of Greenwich/GitHub/ITNr/cran-comments.md",
+    "project_path" : "cran-comments.md",
+    "properties" : {
+        "cursorPosition" : "3,33",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}
