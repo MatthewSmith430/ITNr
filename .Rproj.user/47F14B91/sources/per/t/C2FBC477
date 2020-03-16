@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1584375633276.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3883553895",
+    "id" : "C2FBC477",
+    "lastKnownWriteTime" : 1584375638,
+    "last_content_update" : 1584375638727,
+    "path" : "~/GitHub/ITNr/R/ITNcentrality_function.R",
+    "project_path" : "R/ITNcentrality_function.R",
+    "properties" : {
+        "cursorPosition" : "56,50",
+        "scrollLine" : "47"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
