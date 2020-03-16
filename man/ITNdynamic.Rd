@@ -16,6 +16,7 @@ It returns the Dynamic Network Object
 This function produces a dynamic network object for ITNs. It cleans and adjusts the individual networks, so they are the same size. This dynamic network object can then be used to create animations, mapping changes over time and to calculate temporal network statistics
 }
 \examples{
+\donttest{
 require(igraph)
 
 ##Create a set of random International Trade Networks (igraph objects)
@@ -33,5 +34,5 @@ NETlist<-list(ITN1,ITN2,ITN3)
 ##Create Dynamic Network Object
 
 ITNdyn<-ITNdynamic(NETlist)
-
+}
 }

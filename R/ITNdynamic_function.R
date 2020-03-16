@@ -4,7 +4,7 @@
 #' @param NETlist A list of International Trade Networks (igraph objects)
 #' @export
 #' @return It returns the Dynamic Network Object
-#' @examples
+#' @examples\donttest{
 #' require(igraph)
 #'
 #' ##Create a set of random International Trade Networks (igraph objects)
@@ -22,7 +22,7 @@
 #'##Create Dynamic Network Object
 #'
 #'ITNdyn<-ITNdynamic(NETlist)
-#'
+#'}
 
 ITNdynamic<-function(NETlist){
   MATlist<-list()

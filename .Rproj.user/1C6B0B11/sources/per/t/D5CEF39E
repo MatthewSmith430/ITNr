@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583926179683.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3340408400",
+    "id" : "D5CEF39E",
+    "lastKnownWriteTime" : 1583927281,
+    "last_content_update" : 1583927281759,
+    "path" : "C:/Users/ms3453n/Downloads/logistic regression.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "33,12",
+        "scrollLine" : "18",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -24,12 +24,10 @@ library(GGally)
 library(cowplot)
 library(intergraph)
 library(sna)
-library(xergm)
 library(ndtv)
 library(networkDynamic)
 library(tnet)
 library(blockmodeling)
-library(GoodmanKruskal)
 library(reshape2)
 
 #Install this package:

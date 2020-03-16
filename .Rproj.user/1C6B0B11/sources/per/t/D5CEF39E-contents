@@ -1,0 +1,34 @@
+###Mulitnominal Logistic Regression
+####Example
+library(rattle.data)
+# Loading the wine data
+data(wine)
+library(nnet)
+
+#The dependent variable here is Type of wine
+multinom.fit <- multinom(Type ~ Alcohol + Color, data = wine)
+summary(multinom.fit)
+#Each model/row conveys the effect of predictors on the probability of
+#success in that category,
+#in comparison to the reference category.
+
+#The first row represents the coefficients for Type 2 wine in
+#comparison to our baseline which is Type  1
+#wine and the second row represents the coefficients for
+#Type 3 wine in comparison to our baseline which is Type 1 wine.
+
+#If the coefficent is postive it indicates for a one-unit
+#increase in the variable there will be
+#an increase in the log odds of being
+#in that type vs the baseline
+
+#If the coefficent is negative it indicates for a one-unit
+#increase in the variable there will be
+#an decrease in the log odds of being
+#in that type vs the baseline
+
+
+####Cramer's V
+###Testing the association between two variables
+###Gender & Mental Health Catgory
+library(lsr)

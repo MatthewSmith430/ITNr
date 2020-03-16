@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583862857533.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "410760430",
+    "id" : "A7F1AB36",
+    "lastKnownWriteTime" : 1583862884,
+    "last_content_update" : 1583862884179,
+    "path" : "C:/Users/ms3453n/OneDrive - University of Greenwich/GitHub/ITNr/R/ITNdynamic_function.R",
+    "project_path" : "R/ITNdynamic_function.R",
+    "properties" : {
+        "cursorPosition" : "24,3",
+        "scrollLine" : "13"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
