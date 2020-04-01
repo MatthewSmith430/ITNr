@@ -4,8 +4,14 @@
 \alias{adjust_mat}
 \title{Adjust Matrix}
 \usage{
-adjust_mat(source, target, remove = TRUE, add = TRUE, value = NA,
-  returnlabels = FALSE)
+adjust_mat(
+  source,
+  target,
+  remove = TRUE,
+  add = TRUE,
+  value = NA,
+  returnlabels = FALSE
+)
 }
 \arguments{
 \item{source}{A matrix which should be adjusted (one-mode & directed).}
