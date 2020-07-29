@@ -1,0 +1,18 @@
+require(igraph)
+#' ##Create random International Trade Network (igraph object)
+ITN<-erdos.renyi.game(50,0.05,directed = TRUE)
+#'
+#' ##Add edge weights
+E(ITN)$weight<-runif(ecount(ITN), 0, 1)
+#'
+#' ##Add vertex names
+V(ITN)$name<-1:vcount(ITN)
+#'
+plot(ITN)
+#' ##Implement core-periphery algorithm
+library(ITNr)
+ITNcp<-core_periphery_weighted(ITN,"directed")
+
+gs<-ITNcp[[1]]
+V(gs)$all_cp
+DF<-ITNcp[[2]]
