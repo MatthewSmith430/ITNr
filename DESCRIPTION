@@ -8,9 +8,9 @@ Description: Functions to clean and process international trade data into an int
 Depends: R (>= 2.15.1), network
 License: GPL-3
 Encoding: UTF-8
-Imports: stats,circlize,graphics,RColorBrewer,
+Imports: stats,circlize,graphics,RColorBrewer,xergm.common,
          reshape2,maps,blockmodeling,igraph,utils,dplyr,plyr,
          cowplot,ggplot2,GGally,fastmatch,intergraph,
          sna,tnet,WDI,networkDynamic
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1

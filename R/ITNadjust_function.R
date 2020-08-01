@@ -37,7 +37,7 @@ ITNadjust<-function(MATlist,j){
   for (z in 1:length(files2)){
     HMAT<-files2[z]
     HMAT<-HMAT[[1]]
-    NetMAT<- adjust_mat(NetMAT, HMAT,
+    NetMAT<- xergm.common::adjust(NetMAT, HMAT,
                         remove = FALSE,add=TRUE,
                         value=0,returnlabels = FALSE)
   }

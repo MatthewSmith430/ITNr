@@ -16,28 +16,18 @@ adjust_mat <- function(source, target, remove = TRUE, add = TRUE, value = NA,
                    returnlabels = FALSE) {
 
   # make sure the source is a list
-  if (is.null(source)) {
-    stop("The 'source' argument was not recognized.")
-  } else if (class(source) == "matrix") {
+
     # wrap in list
     sources <- list()
     sources[[1]] <- source
     sources.initialtype <- "matrix"
-  } else {
-    stop(paste("Source data type not supported"))
-  }
 
-  # make sure the target is a list
-  if (is.null(target)) {
-    stop("The 'target' argument was not recognized.")
-  } else if (class(target) == "matrix") {
+
     # wrap in list
     targets <- list()
     targets[[1]] <- target
     targets.initialtype <- "matrix"
-  } else {
-    stop(paste("Target data type not supported"))
-  }
+
 
   # make sure that both lists (sources and targets) have the same length
   if (length(sources) == length(targets)) {
@@ -483,9 +473,9 @@ adjust_mat <- function(source, target, remove = TRUE, add = TRUE, value = NA,
   # adjust network attributes (= matrices) recursively and add back in
 
 
-  if (sources.initialtype == "list") {
-    return(sources)
-  } else {
+  #if (sources.initialtype == "list") {
+  #  return(sources)
+  #} else {
     return(sources[[1]])
-  }
+  #}
 }

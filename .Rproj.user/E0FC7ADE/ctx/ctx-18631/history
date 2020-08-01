@@ -1,227 +1,3 @@
-keep.col.indices <- 1:ncol(sources[[i]])
-}
-} else {
-keep.col.indices <- 1
-}
-removed.rows <- which(!1:nrow(as.matrix(sources[[i]])) %in%
-keep.row.indices)
-removed.columns <- which(!1:ncol(as.matrix(sources[[i]])) %in%
-keep.col.indices)
-sources[[i]] <- as.matrix(sources[[i]][keep.row.indices,
-keep.col.indices])
-}
-# sort source (and attributes) according to row and column names of target
-#    if (length(sources.attributes[[i]]) > 0) {
-#      for (j in 1:length(sources.attributes[[i]])) {
-#        if (!is.null(sources.attributes[[i]][[j]]) &&
-#            length(sources.attributes[[i]][[j]]) > 0) {
-#          if (sources.onemode[[i]] == TRUE) {
-#            names(sources.attributes[[i]][[j]]) <- rownames(sources[[i]])
-#            sources.attributes[[i]][[j]] <-
-#                sources.attributes[[i]][[j]][rownames(sources[[i]])]
-#          } else {
-#            names(sources.attributes[[i]][[j]]) <- c(rownames(sources[[i]]),
-#                rownames(sources[[i]]))
-#            sources.attributes[[i]][[j]] <-
-#                c(sources.attributes[[i]][[j]][rownames(sources[[i]])],
-#                sources.attributes[[i]][[j]][colnames(sources[[i]])])
-#          }
-#        }
-#      }
-#    }
-#
-if (sources.types[[i]] %in% c("matrix", "network") &&
-targets.types[[i]] %in% c("matrix", "network") &&
-nrow(sources[[i]]) == nrow(targets[[i]]) &&
-ncol(sources[[i]]) == ncol(targets[[i]])) {
-sources[[i]] <- sources[[i]][rownames(targets[[i]]),
-colnames(targets[[i]])]
-} else if (sources.types[[i]] %in% c("matrix", "network") &&
-!targets.types[[i]] %in% c("matrix", "network") &&
-nrow(sources[[i]]) == nrow(targets[[i]])) {
-sources[[i]] <- sources[[i]][rownames(targets[[i]]),
-rownames(targets[[i]])]
-} else if (length(sources[[i]]) == nrow(targets[[i]])) {
-# source is a vector, irrespective of the target
-sources[[i]] <- sources[[i]][rownames(targets[[i]]), ]
-} else if (add == FALSE && (nrow(sources[[i]]) < nrow(targets[[i]]) ||
-any(rownames(sources[[i]]) != rownames(targets[[i]])))) {
-}
-# convert back into network
-# convert vectors back from one-column matrices to vectors
-if (!sources.types[[i]] %in% c("matrix", "network") &&
-class(sources[[i]]) == "matrix" && ncol(sources[[i]]) == 1) {
-sources[[i]] <- sources[[i]][, 1]
-}
-# return added and removed labels instead of actual objects
-if (returnlabels == TRUE) {
-sources[[i]] <- list()
-sources[[i]]$removed.row <- removed.rows
-sources[[i]]$removed.col <- removed.columns
-sources[[i]]$added.row <- add.row.labels
-sources[[i]]$added.col <- add.col.labels
-}
-}
-# make sure the source is a list
-if (is.null(source)) {
-stop("The 'source' argument was not recognized.")
-} else if (class(source) == "matrix") {
-# wrap in list
-sources <- list()
-sources[[1]] <- source
-sources.initialtype <- "matrix"
-} else {
-stop(paste("Source data type not supported"))
-}
-# make sure the target is a list
-if (is.null(target)) {
-stop("The 'target' argument was not recognized.")
-} else if (class(target) == "matrix") {
-# wrap in list
-targets <- list()
-targets[[1]] <- target
-targets.initialtype <- "matrix"
-} else {
-stop(paste("Target data type not supported"))
-}
-# make sure that both lists (sources and targets) have the same length
-if (length(sources) == length(targets)) {
-# OK; do nothing
-} else if (length(sources) == 1) {
-for (i in 2:length(targets)) {
-sources[[i]] <- sources[[1]]
-}
-} else if (length(targets) == 1) {
-for (i in 2:length(sources)) {
-targets[[i]] <- targets[[1]]
-}
-} else {
-stop("Different numbers of sources and targets were provided.")
-}
-# convert each item if necessary and save nodal attributes
-sources.attribnames <- list()  # names of additional vertex attributes
-sources.attributes <- list()  # additional vertex attributes
-sources.types <- list()  # matrix, network etc.
-sources.onemode <- list()  # is the source network a one-mode network?
-sources.directed <- list()  # is the source network directed?
-sources.matrixnames <- list()  # names of additional matrices
-sources.matrices <- list()  # additional matrices stored in the source network
-targets.attribnames <- list()  # names of additional vertex attributes
-targets.attributes <- list()  # additional vertex attributes
-targets.types <- list()  # matrix, network etc.
-targets.onemode <- list()  # is the target network a one-mode network?
-targets.directed <- list()  # is the source network directed?
-for (i in 1:length(sources)) {
-sources.types[[i]] <- class(sources[[i]])
-if (class(sources[[i]]) == "matrix") {
-sources.onemode[[i]] <- TRUE#is.mat.onemode(sources[[i]])
-sources.directed[[i]] <- TRUE#is.mat.directed(sources[[i]])
-} else {
-sources[[i]] <- as.matrix(sources[[i]], ncol = 1)
-}
-targets.types[[i]] <- class(targets[[i]])
-if (class(targets[[i]]) == "matrix") {
-targets.onemode[[i]] <- TRUE#is.mat.onemode(targets[[i]])
-targets.directed[[i]] <- TRUE#is.mat.directed(targets[[i]])
-} else {
-targets[[i]] <- as.matrix(targets[[i]], ncol = 1)
-}
-}
-# impute row or column labels if only one of them is present
-for (i in 1:length(sources)) {
-if (is.null(rownames(sources[[i]])) && !is.null(colnames(sources[[i]])) &&
-nrow(sources[[i]]) == ncol(sources[[i]])) {
-rownames(sources[[i]]) <- colnames(sources[[i]])
-}
-if (is.null(colnames(sources[[i]])) && !is.null(rownames(sources[[i]])) &&
-nrow(sources[[i]]) == ncol(sources[[i]])) {
-colnames(sources[[i]]) <- rownames(sources[[i]])
-}
-if (is.null(rownames(targets[[i]])) && !is.null(colnames(targets[[i]])) &&
-nrow(targets[[i]]) == ncol(targets[[i]])) {
-rownames(targets[[i]]) <- colnames(targets[[i]])
-}
-if (is.null(colnames(targets[[i]])) && !is.null(rownames(targets[[i]])) &&
-nrow(targets[[i]]) == ncol(targets[[i]])) {
-colnames(targets[[i]]) <- rownames(targets[[i]])
-}
-}
-# throw error if there are duplicate names (first sources, then targets)
-for (i in 1:length(sources)) {
-if (class(sources[[i]]) %in% c("matrix", "data.frame")) {
-# row names
-if (!is.null(rownames(sources[[i]]))) {
-test.actual <- nrow(sources[[i]])
-test.unique <- length(unique(rownames(sources[[i]])))
-dif <- test.actual - test.unique
-if (dif > 1) {
-stop(paste0("At t = ", i, ", there are ", dif,
-" duplicate source row names."))
-} else if (dif == 1) {
-stop(paste0("At t = ", i, ", there is ", dif,
-" duplicate source row name."))
-}
-}
-# column names
-if (!is.null(colnames(sources[[i]]))) {
-test.actual <- ncol(sources[[i]])
-test.unique <- length(unique(colnames(sources[[i]])))
-dif <- test.actual - test.unique
-if (dif > 1) {
-stop(paste0("At t = ", i, ", there are ", dif,
-" duplicate source column names."))
-} else if (dif == 1) {
-stop(paste0("At t = ", i, ", there is ", dif,
-" duplicate source column name."))
-}
-}
-} else {
-# vector names
-if (!is.null(names(sources[[i]]))) {
-test.actual <- length(sources[[i]])
-test.unique <- length(unique(names(sources[[i]])))
-dif <- test.actual - test.unique
-if (dif > 1) {
-stop(paste0("At t = ", i, ", there are ", dif,
-" duplicate source names."))
-} else if (dif == 1) {
-stop(paste0("At t = ", i, ", there is ", dif,
-" duplicate source name."))
-}
-}
-}
-}
-for (i in 1:length(targets)) {
-if (class(targets[[i]]) %in% c("matrix", "data.frame")) {
-# row names
-if (!is.null(rownames(targets[[i]]))) {
-test.actual <- nrow(targets[[i]])
-test.unique <- length(unique(rownames(targets[[i]])))
-dif <- test.actual - test.unique
-if (dif > 1) {
-stop(paste0("At t = ", i, ", there are ", dif,
-" duplicate target row names."))
-} else if (dif == 1) {
-stop(paste0("At t = ", i, ", there is ", dif,
-" duplicate target row name."))
-}
-}
-# column names
-if (!is.null(colnames(targets[[i]]))) {
-test.actual <- ncol(targets[[i]])
-test.unique <- length(unique(colnames(targets[[i]])))
-dif <- test.actual - test.unique
-if (dif > 1) {
-stop(paste0("At t = ", i, ", there are ", dif,
-" duplicate target column names."))
-} else if (dif == 1) {
-stop(paste0("At t = ", i, ", there is ", dif,
-" duplicate target column name."))
-}
-}
-} else {
-# vector names
-if (!is.null(names(targets[[i]]))) {
 test.actual <- length(targets[[i]])
 test.unique <- length(unique(names(targets[[i]])))
 dif <- test.actual - test.unique
@@ -509,4 +285,228 @@ return(sources[[1]])
 sources.initialtype
 sources[[1]]
 library(ITNr)
+library(ITNr)
+library(ITNr)
+library(ITNr)
+mat1<- matrix(round(runif(10*10)), 10, 10)
+rownames(mat1)<-LETTERS[1:10]
+colnames(mat1)<-LETTERS[1:10]
+mat2<- matrix(round(runif(10*10)), 10, 10)
+rownames(mat2)<-LETTERS[10:19]
+colnames(mat2)<-LETTERS[10:19]
+# wrap in list
+sources <- list()
+sources[[1]] <- source
+sources.initialtype <- "matrix"
+# wrap in list
+targets <- list()
+targets[[1]] <- target
+targets.initialtype <- "matrix"
+# make sure that both lists (sources and targets) have the same length
+if (length(sources) == length(targets)) {
+# OK; do nothing
+} else if (length(sources) == 1) {
+for (i in 2:length(targets)) {
+sources[[i]] <- sources[[1]]
+}
+} else if (length(targets) == 1) {
+for (i in 2:length(sources)) {
+targets[[i]] <- targets[[1]]
+}
+} else {
+stop("Different numbers of sources and targets were provided.")
+}
+# convert each item if necessary and save nodal attributes
+sources.attribnames <- list()  # names of additional vertex attributes
+sources.attributes <- list()  # additional vertex attributes
+sources.types <- list()  # matrix, network etc.
+sources.onemode <- list()  # is the source network a one-mode network?
+sources.directed <- list()  # is the source network directed?
+sources.matrixnames <- list()  # names of additional matrices
+sources.matrices <- list()  # additional matrices stored in the source network
+targets.attribnames <- list()  # names of additional vertex attributes
+targets.attributes <- list()  # additional vertex attributes
+targets.types <- list()  # matrix, network etc.
+targets.onemode <- list()  # is the target network a one-mode network?
+targets.directed <- list()  # is the source network directed?
+#  targets.types[[i]] <- class(targets[[i]])
+#  if (class(targets[[i]]) == "matrix") {
+#    targets.onemode[[i]] <- TRUE#is.mat.onemode(targets[[i]])
+#    targets.directed[[i]] <- TRUE#is.mat.directed(targets[[i]])
+#  } else {
+#    targets[[i]] <- as.matrix(targets[[i]], ncol = 1)
+#  }
+}
+# impute row or column labels if only one of them is present
+for (i in 1:length(sources)) {
+if (is.null(rownames(sources[[i]])) && !is.null(colnames(sources[[i]])) &&
+nrow(sources[[i]]) == ncol(sources[[i]])) {
+rownames(sources[[i]]) <- colnames(sources[[i]])
+}
+if (is.null(colnames(sources[[i]])) && !is.null(rownames(sources[[i]])) &&
+nrow(sources[[i]]) == ncol(sources[[i]])) {
+colnames(sources[[i]]) <- rownames(sources[[i]])
+}
+if (is.null(rownames(targets[[i]])) && !is.null(colnames(targets[[i]])) &&
+nrow(targets[[i]]) == ncol(targets[[i]])) {
+rownames(targets[[i]]) <- colnames(targets[[i]])
+}
+if (is.null(colnames(targets[[i]])) && !is.null(rownames(targets[[i]])) &&
+nrow(targets[[i]]) == ncol(targets[[i]])) {
+colnames(targets[[i]]) <- rownames(targets[[i]])
+}
+}
+# throw error if there are duplicate names (first sources, then targets)
+for (i in 1:length(sources)) {
+if (class(sources[[i]]) %in% c("matrix", "data.frame")) {
+# row names
+if (!is.null(rownames(sources[[i]]))) {
+test.actual <- nrow(sources[[i]])
+test.unique <- length(unique(rownames(sources[[i]])))
+dif <- test.actual - test.unique
+if (dif > 1) {
+stop(paste0("At t = ", i, ", there are ", dif,
+" duplicate source row names."))
+} else if (dif == 1) {
+stop(paste0("At t = ", i, ", there is ", dif,
+" duplicate source row name."))
+}
+}
+# column names
+if (!is.null(colnames(sources[[i]]))) {
+test.actual <- ncol(sources[[i]])
+test.unique <- length(unique(colnames(sources[[i]])))
+dif <- test.actual - test.unique
+if (dif > 1) {
+stop(paste0("At t = ", i, ", there are ", dif,
+" duplicate source column names."))
+} else if (dif == 1) {
+stop(paste0("At t = ", i, ", there is ", dif,
+" duplicate source column name."))
+}
+}
+} else {
+# vector names
+if (!is.null(names(sources[[i]]))) {
+test.actual <- length(sources[[i]])
+test.unique <- length(unique(names(sources[[i]])))
+dif <- test.actual - test.unique
+if (dif > 1) {
+stop(paste0("At t = ", i, ", there are ", dif,
+" duplicate source names."))
+} else if (dif == 1) {
+stop(paste0("At t = ", i, ", there is ", dif,
+" duplicate source name."))
+}
+}
+}
+}
+for (i in 1:length(targets)) {
+if (class(targets[[i]]) %in% c("matrix", "data.frame")) {
+# row names
+if (!is.null(rownames(targets[[i]]))) {
+test.actual <- nrow(targets[[i]])
+test.unique <- length(unique(rownames(targets[[i]])))
+dif <- test.actual - test.unique
+if (dif > 1) {
+stop(paste0("At t = ", i, ", there are ", dif,
+" duplicate target row names."))
+} else if (dif == 1) {
+stop(paste0("At t = ", i, ", there is ", dif,
+" duplicate target row name."))
+}
+}
+# column names
+if (!is.null(colnames(targets[[i]]))) {
+test.actual <- ncol(targets[[i]])
+test.unique <- length(unique(colnames(targets[[i]])))
+dif <- test.actual - test.unique
+if (dif > 1) {
+stop(paste0("At t = ", i, ", there are ", dif,
+" duplicate target column names."))
+} else if (dif == 1) {
+stop(paste0("At t = ", i, ", there is ", dif,
+" duplicate target column name."))
+}
+}
+} else {
+# vector names
+if (!is.null(names(targets[[i]]))) {
+test.actual <- length(targets[[i]])
+test.unique <- length(unique(names(targets[[i]])))
+dif <- test.actual - test.unique
+if (dif > 1) {
+stop(paste0("At t = ", i, ", there are ", dif,
+" duplicate target names."))
+} else if (dif == 1) {
+stop(paste0("At t = ", i, ", there is ", dif,
+" duplicate target name."))
+}
+}
+}
+}
+# add original labels to saved network attributes (= matrices) if necessary
+for (i in 1:length(sources)) {
+if (sources.types[[i]] == "network" && !is.null(sources.matrices[[i]])
+&& length(sources.matrices[[i]]) > 0) {
+for (j in 1:length(sources.matrices[[i]])) {
+if (nrow(as.matrix(sources.matrices[[i]][[j]])) !=
+nrow(as.matrix(sources[[i]])) ||
+ncol(as.matrix(sources.matrices[[i]][[j]])) !=
+ncol(as.matrix(sources[[i]]))) {
+warning(paste("Network attribute", sources.matrixnames[[i]][j],
+"does not have the same dimensions as the source network at",
+"time step", i, "."))
+}
+if (class(sources.matrices[[i]][[j]]) == "network") {
+if (sources.onemode[[i]] == TRUE) {
+sources.matrices[[i]][[j]] <- set.vertex.attribute(
+sources.matrices[[i]][[j]], "vertex.names",
+rownames(as.matrix(sources[[i]])))
+} else {
+sources.matrices[[i]][[j]] <- set.vertex.attribute(
+sources.matrices[[i]][[j]], "vertex.names",
+c(rownames(as.matrix(sources[[i]])),
+colnames(as.matrix(sources[[i]]))))
+}
+} else {
+rownames(sources.matrices[[i]][[j]]) <-
+rownames(as.matrix(sources[[i]]))
+colnames(sources.matrices[[i]][[j]]) <-
+colnames(as.matrix(sources[[i]]))
+}
+}
+}
+}
+MATlist<-list(mat1,mat2,mat3)
+mat3<- matrix(round(runif(12*12)), 12, 12)
+rownames(mat3)<-LETTERS[15:26]
+colnames(mat3)<-LETTERS[15:26]
+MATlist<-list(mat1,mat2,mat3)
+files2<-MATlist #matrix list
+files2[[j]]<-NULL
+NetMAT<-MATlist[[j]]
+for (z in 1:length(files2)){
+HMAT<-files2[z]
+HMAT<-HMAT[[1]]
+NetMAT<- adjust_mat(NetMAT, HMAT,
+remove = FALSE,add=TRUE,
+value=0,returnlabels = FALSE)
+}
+j<-1
+<
+files2<-MATlist #matrix list
+files2[[j]]<-NULL
+NetMAT<-MATlist[[j]]
+for (z in 1:length(files2)){
+HMAT<-files2[z]
+HMAT<-HMAT[[1]]
+NetMAT<- adjust_mat(NetMAT, HMAT,
+remove = FALSE,add=TRUE,
+value=0,returnlabels = FALSE)
+}
+NetMat<-NetMAT[,sort(colnames(NetMAT))]
+NetMAT<-NetMAT[sort(rownames(NetMAT)),]
+library(xergm.common)
+?adjust
 library(ITNr)

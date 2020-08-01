@@ -28,27 +28,3 @@ Then for the other you are limited to a character vector of country names,
 length five or fewer. Therefore, this will not give you a full network.
 However, this function can be applied to trade data downloaded from UN Comtrade (download csv and read into R as a dataframe), or any other trade data which is in the same format as the comtradr dataframe.
 }
-\examples{
-\donttest{
-##download data using comtradr
-#require(comtradr)
-
-##Download the trade data for tomatoes - code 0702
-##All countries, Year - 2016
-#ex_2 <- ct_search(reporters = "All",
-#               partners = c("USA","China",
-#               "Germany","Canada","Mexico"),
-#               trade_direction = "imports",
-#               start_date = "2016-01-01",
-#               end_date = "2016-12-31",
-#               commod_codes = "0702")
-
-##this then gives a data frame which
-##we can clean using the following function:
-tomatoesITN<-Comtradrclean(ex_2,2016,TRUE,0.01)
-
-##We apply a threshold - only retaining ties that are at least 0.01\%
-##of total tomatoes trade (amngst these countries)
-
-}
-}
