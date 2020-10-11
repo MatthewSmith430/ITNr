@@ -22,16 +22,3 @@ International Trade Network - igraph object
 This function takes (import) trade data downloaded from WITS, cleans it and transforms it into a network.
 Adding a number of country level attributes to nodes in the network, including: regional partition, GDP, GDP per capita, GDP growth and FDI.
 }
-\examples{
-\donttest{
-##Create an igraph object from international
-##trade data downloaded from WITS
-
-##Applies a threhold
-##only retains ties that are at least
-## 0.01\% of total trade
-
-ITN<-WITSclean("WITS_CSV_FILE_NAME.csv",2015,TRUE,0.01)
-
-}
-}

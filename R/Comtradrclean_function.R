@@ -14,28 +14,7 @@
 #' @param cutoff Threshold - cutoff level, Backbone - significance level
 #' @export
 #' @return International Trade Network - igraph object
-#' @examples \donttest{
-#'##download data using comtradr
-#'require(comtradr)
-#'
-#'##Download the trade data for tomatoes - code 0702
-#'##All countries, Year - 2016
-#'ex_2 <- ct_search(reporters = "All",
-#'               partners = c("USA","China",
-#'               "Germany","Canada","Mexico"),
-#'               trade_direction = "imports",
-#'               start_date = "2016-01-01",
-#'               end_date = "2016-12-31",
-#'               commod_codes = "0702")
-#'
-#'##this then gives a data frame which
-#'##we can clean using the following function:
-#'tomatoesITN<-Comtradrclean(ex_2,2016,TRUE,0.01)
-#'
-#'##We apply a threshold - only retaining ties that are at least 0.01%
-#'##of total tomatoes trade (amngst these countries)
-#'
-#' }
+
 Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   DATA<-subset(DF,DF$year==YEAR)
 
@@ -185,12 +164,15 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
 
   target<-CountryNames
   dfREG<-dfREG[match(target,dfREG$COUNTRYlist),]
+  #
   RR<-as.vector(dfREG[,2])
+  RR2<-dplyr::pull(RR, REGIONlist)
   RR2<-as.factor(RR)
   H<-as.character(dfREG$REGIONlist)
 
   dfINC<-dfINC[match(target,dfINC$COUNTRYlist),]
   KK<-as.vector(dfINC[,2])
+  KK2<- dplyr::pull(KK,INCOMElist)
   KK2<-as.factor(KK)
   U<-as.character(dfINC$INCOMElist)
 

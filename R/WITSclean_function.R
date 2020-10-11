@@ -8,17 +8,7 @@
 #' @param cutoff Threshold - cutoff level, Backbone - significance level
 #' @export
 #' @return International Trade Network - igraph object
-#' @examples\donttest{
-#' ##Create an igraph object from international
-#' ##trade data downloaded from WITS
-#'
-#' ##Applies a threhold
-#' ##only retains ties that are at least
-#' ## 0.01% of total trade
-#'
-#' ITN<-WITSclean("WITS_CSV_FILE_NAME.csv",2015,TRUE,0.01)
-#'
-#' }
+
 WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   DATAV1<-utils::read.csv(CSVfile)
   DATA<-dplyr::filter(DATAV1,DATAV1$Year==YEAR)
