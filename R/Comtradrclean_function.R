@@ -165,13 +165,13 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   target<-CountryNames
   dfREG<-dfREG[match(target,dfREG$COUNTRYlist),]
   #
-  RR<-as.vector(dfREG[,2])
-  RR2 <- lapply(RR, as.factor)$REGIONlist
+  RR<-unlist(dfREG[,2])
+  RR2 <- as.factor(RR)
   H<-as.character(dfREG$REGIONlist)
 
   dfINC<-dfINC[match(target,dfINC$COUNTRYlist),]
-  KK<-as.vector(dfINC[,2])
-  KK2<-lapply(KK, as.factor)$INCOMElist
+  KK<-unlist(dfINC[,2])
+  KK2<-as.factor(KK)
   U<-as.character(dfINC$INCOMElist)
 
   A<-levels(RR2)
@@ -186,9 +186,9 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   dfFDI<-dfFDI[match(target,dfFDI$iso3),]
 
   GGDP<-unlist(dfGDP[,2])
-  GGDP<-as.numeric(GGDP)
+  GGDP<-suppressWarnings(as.numeric(GGDP))
   GGDPPC<-unlist(dfGDPPC[,2])
-  GGDPPC<-as.numeric(GGDPPC)
+  GGDPPC<-suppressWarnings(as.numeric(GGDPPC))
   GGDPgrowth<-as.vector(dfGDPgrowth[,2])
   GGDPgrowth<-GGDPgrowth$GDPgrowth
   GGDPgrowth<-suppressWarnings(as.numeric(GGDPgrowth))
