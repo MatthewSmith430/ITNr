@@ -187,10 +187,10 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
 
   GGDP<-as.vector(dfGDP[,2])
   GGDP<-GGDP$GDP
-  GGDP<-lapply(GGDP, as.numeric)
+  GGDP<-suppressWarnings(lapply(GGDP, as.numeric))
   GGDPPC<-as.vector(dfGDPPC[,2])
   GGDPPC<-GGDPPC$GDPPC
-  GGDPPC<-lapply(GGDPPC, as.numeric)
+  GGDPPC<-suppressWarnings(lapply(GGDPPC, as.numeric))
   GGDPgrowth<-as.vector(dfGDPgrowth[,2])
   GGDPgrowth<-GGDPgrowth$GDPgrowth
   GGDPgrowth<-suppressWarnings(as.numeric(GGDPgrowth))
