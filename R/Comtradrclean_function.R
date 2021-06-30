@@ -186,11 +186,9 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   dfFDI<-dfFDI[match(target,dfFDI$iso3),]
 
   GGDP<-as.vector(dfGDP[,2])
-  GGDP<-GGDP$GDP
-  GGDP<-suppressWarnings(lapply(GGDP, as.numeric))
+  GGDP<-suppressWarnings(lapply(GGDP, as.numeric)$GGDP)
   GGDPPC<-as.vector(dfGDPPC[,2])
-  GGDPPC<-GGDPPC$GDPPC
-  GGDPPC<-suppressWarnings(lapply(GGDPPC, as.numeric))
+  GGDPPC<-suppressWarnings(lapply(GGDPPC, as.numeric)$GGDPPC)
   GGDPgrowth<-as.vector(dfGDPgrowth[,2])
   GGDPgrowth<-GGDPgrowth$GDPgrowth
   GGDPgrowth<-suppressWarnings(as.numeric(GGDPgrowth))
