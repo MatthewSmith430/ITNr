@@ -166,12 +166,12 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   dfREG<-dfREG[match(target,dfREG$COUNTRYlist),]
   #
   RR<-as.vector(dfREG[,2])
-  RR2 <- lapply(RR, as.factor)
+  RR2 <- lapply(RR, as.factor)$REGIONlist
   H<-as.character(dfREG$REGIONlist)
 
   dfINC<-dfINC[match(target,dfINC$COUNTRYlist),]
   KK<-as.vector(dfINC[,2])
-  KK2<-lapply(KK, as.factor)
+  KK2<-lapply(KK, as.factor)$INCOMElist
   U<-as.character(dfINC$INCOMElist)
 
   A<-levels(RR2)
