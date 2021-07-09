@@ -1,7 +1,7 @@
 {
     "installOptions": {
         "installFromRepository": true,
-        "libraryPath": "C:/Users/matt_/OneDrive/Documents/R/win-library/4.0",
+        "libraryPath": "C:/Users/matt_/OneDrive/Documents/R/win-library/4.1",
         "installDependencies": true
     }
 }
