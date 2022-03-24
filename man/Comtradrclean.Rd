@@ -26,5 +26,6 @@ Firstly when downloading the data with comtradr, you must specify reporters and 
 yet you cannot put “all” for both – only for either reporters or partners.
 Then for the other you are limited to a character vector of country names,
 length five or fewer. Therefore, this will not give you a full network.
-However, this function can be applied to trade data downloaded from UN Comtrade (download csv and read into R as a dataframe), or any other trade data which is in the same format as the comtradr dataframe.
+However, this function can be applied to trade data downloaded from UN Comtrade (download csv and read into R as a dataframe), or any other trade data. You just make sure it has the following column names:
+reporter_iso, partner_iso, trade_value_usd and year. Some dataformats may have different names. Also - it is important to note that this function is for import data.
 }
