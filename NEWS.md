@@ -1,3 +1,6 @@
+# ITNr 0.7.0
+The Comtradr function was updated and the make_trade_network function was added. 
+
 # ITNr 0.6.0
 Reduced dependence on `xergm.commom` in order to keep the package on CRAN.
 

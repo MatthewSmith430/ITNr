@@ -44,7 +44,7 @@ make_trade_network<-function(DF,threshold,cutoff){
   INCOMElist<-WDICountryInfo[,"income"]
   CountryRegion<-cbind(COUNTRYlist,REGIONlist)
   CountryIncome<-cbind(COUNTRYlist,INCOMElist)
-  AggReg<-c("All","EUN","UNS","OAS","FRE",
+  AggReg<-c("All","EUN","UNS","OAS","FRE","BAT",
             "SPE","VAT","UMI","ATA","PCN","AIA","COK",
             "SHN","MSR","NIU",
             "BES","BLM","BUN","BVT","CCK","CXR","FLK",#Small regions

@@ -1,108 +1,116 @@
-#' @title Comtradr data clean
+#' @title WITS data clean
 #'
-#' @description This function takes (import) trade data downloaded from comtrade - potentially using the comtradr package, cleans it and transforms it into a network.
+#' @description This function takes (import) trade data downloaded from WITS, cleans it and transforms it into a network.
 #' Adding a number of country level attributes to nodes in the network, including: regional partition, GDP, GDP per capita, GDP growth and FDI.
-#' However, it is important to note the limits of using comtradr to construct a network.
-#' Firstly when downloading the data with comtradr, you must specify reporters and partners –
-#' yet you cannot put “all” for both – only for either reporters or partners.
-#' Then for the other you are limited to a character vector of country names,
-#' length five or fewer. Therefore, this will not give you a full network.
-#' However, this function can be applied to trade data downloaded from UN Comtrade (download csv and read into R as a dataframe), or any other trade data. You just make sure it has the following column names:
-#' reporter_iso, partner_iso, trade_value_usd and year. Some dataformats may have different names. Also - it is important to note that this function is for import data.
-#' @param DF Dataframe of trade data downloaded (potentially using the comtradr package)
+#' @param CSVfile WITS csv file
 #' @param YEAR Year
 #' @param threshold Apply a threshold - TRUE, Extract the backbone - FALSE
 #' @param cutoff Threshold - cutoff level, Backbone - significance level
 #' @export
 #' @return International Trade Network - igraph object
 
-Comtradrclean<-function(DF,YEAR,threshold,cutoff){
-  DATA<-subset(DF,DF$year==YEAR)
-
-  H<-stats::aggregate(trade_value_usd~reporter_iso+partner_iso, DATA, sum)
-
-  Sender<-as.vector(H[,"partner_iso"])
+WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
+  DATAV1<-utils::read.csv(CSVfile)
+  DATA<-dplyr::filter(DATAV1,DATAV1$Year==YEAR)
+  Sender<-as.vector(DATA[,"PartnerISO3"])
   Sender<- gsub('SER', 'SRB', Sender)
   Sender<- gsub('TMP', 'TLS', Sender)
   Sender<- gsub('ZAR', 'COD', Sender)
   Sender<- gsub('ROM', 'ROU', Sender)
   Sender<- gsub('SUD', 'SDN', Sender)
   Sender<- gsub('MNT', 'MNE', Sender)
-
-  Receiver<-as.vector(H[,"reporter_iso"])
+  Receiver<-as.vector(DATA[,"ReporterISO3"])
   Receiver<- gsub('SER', 'SRB', Receiver)
   Receiver<- gsub('TMP', 'TLS', Receiver)
   Receiver<- gsub('ZAR', 'COD', Receiver)
   Receiver<- gsub('ROM', 'ROU', Receiver)
   Receiver<- gsub('SUD', 'SDN', Receiver)
   Receiver<- gsub('MNT', 'MNE', Receiver)
+  VAL<-DATA[,"TradeValue.in.1000.USD"]
 
-  VAL<-H[,"trade_value_usd"]
-  VAL<-as.numeric(VAL)
-  FULLel<-as.data.frame(cbind(Sender,Receiver,VAL),stringsAsFactors = FALSE)
-  FULLel$VAL<-as.numeric(FULLel$VAL)
+  FULLel<-data.frame(Sender=Sender,
+                     Receiver=Receiver,
+                     VAL=VAL,stringsAsFactors = FALSE)
   WDIDataSeries<-WDI::WDI_data
   WDICountryInfo<-WDIDataSeries$country
-  WD<-as.data.frame(WDICountryInfo)
+  WD<-as.data.frame(WDICountryInfo,stringsAsFactors = FALSE)
 
   COUNTRYlist<-WDICountryInfo[,"iso3c"]
   REGIONlist<-WDICountryInfo[,"region"]
   INCOMElist<-WDICountryInfo[,"income"]
   CountryRegion<-cbind(COUNTRYlist,REGIONlist)
   CountryIncome<-cbind(COUNTRYlist,INCOMElist)
+
+  ##List all of the aggregate entities.
   AggReg<-c("All","EUN","UNS","OAS","FRE","BAT",
             "SPE","VAT","UMI","ATA","PCN","AIA","COK",
             "SHN","MSR","NIU",
             "BES","BLM","BUN","BVT","CCK","CXR","FLK",#Small regions
-            "HMD","IOT","NFK","SGS","TKL", #small regions
+            "HMD","IOT","NFK","SGS","TKL",#small regions
             "ESH","SPM","ATF"
-  )
+            )
   AggRegMat<-matrix("Aggregates",length(AggReg),2)
+
   AggRegMat[,1]<-AggReg
+
   CountryRegion<-rbind(CountryRegion,AggRegMat)
   CountryIncome<-rbind(CountryIncome,AggRegMat)
 
-  WDIgdp1<-WDI::WDI(country="all",indicator = "NY.GDP.MKTP.CD", start = YEAR, end=YEAR )
-  WDIgdp1<-as.data.frame(WDIgdp1)
+  CR<-as.data.frame(CountryRegion,stringsAsFactors = FALSE)
+  ALL_AGG<-dplyr::filter(CR,REGIONlist=="Aggregates")
+  ALL_AGG<-ALL_AGG$COUNTRYlist
+  ALL_AGG<-as.vector(ALL_AGG)
+
+  WDIgdp1<-WDI::WDI(country="all",indicator = "NY.GDP.PCAP.KD", start = YEAR, end=YEAR )
+  WDIgdp1<-as.data.frame(WDIgdp1,stringsAsFactors=FALSE)
+  #WDIgdp1<-merge(WD,WDIgdp1,by="iso2c")
   WDIgdp1$iso3<-WD$iso3c[match(WDIgdp1$iso2c,WD$iso2c)]
-  WDIgdp2<-cbind(as.vector(WDIgdp1$iso3),as.vector(WDIgdp1$NY.GDP.MKTP.CD))
+  WDIgdp2<-cbind(as.vector(WDIgdp1$iso3),
+                 as.vector(WDIgdp1$NY.GDP.PCAP.KD))
   colnames(WDIgdp2)<-c("iso3","GDP")
-  WDIgdp2<-as.data.frame(WDIgdp2)
+  WDIgdp2<-as.data.frame(WDIgdp2,stringsAsFactors=FALSE)
 
   WDIGDPgrowth1<-WDI::WDI(country="all",indicator = "NY.GDP.MKTP.KD.ZG", start = YEAR, end=YEAR )
-  WDIGDPgrowth1<-as.data.frame(WDIGDPgrowth1)
+  WDIGDPgrowth1<-as.data.frame(WDIGDPgrowth1,stringsAsFactors=FALSE)
   WDIGDPgrowth1$iso3<-WD$iso3c[match(WDIGDPgrowth1$iso2c,WD$iso2c)]
-  WDIGDPgrowth2<-cbind(as.vector(WDIGDPgrowth1$iso3),as.vector(WDIGDPgrowth1$NY.GDP.MKTP.KD.ZG))
+  WDIGDPgrowth2<-cbind(as.vector(WDIGDPgrowth1$iso3),
+                       as.vector(WDIGDPgrowth1$NY.GDP.MKTP.KD.ZG))
   colnames(WDIGDPgrowth2)<-c("iso3","GDPgrowth")
-  WDIGDPgrowth2<-as.data.frame(WDIGDPgrowth2)
+  WDIGDPgrowth2<-as.data.frame(WDIGDPgrowth2,stringsAsFactors=FALSE)
 
-  WDIGDPPC1<-WDI::WDI(country="all",indicator = "NY.GDP.MKTP.PP.CD", start = YEAR, end=YEAR )
-  WDIGDPPC1<-as.data.frame(WDIGDPPC1)
+  WDIGDPPC1<-WDI::WDI(country="all",indicator = "NY.GDP.PCAP.PP.KD", start = YEAR, end=YEAR )
+  WDIGDPPC1<-as.data.frame(WDIGDPPC1,stringsAsFactors=FALSE)
   WDIGDPPC1$iso3<-WD$iso3c[match(WDIGDPPC1$iso2c,WD$iso2c)]
-  WDIGDPPC2<-cbind(as.vector(WDIGDPPC1$iso3),as.vector(WDIGDPPC1$NY.GDP.MKTP.PP.CD))
+  WDIGDPPC2<-cbind(as.vector(WDIGDPPC1$iso3),as.vector(WDIGDPPC1$NY.GDP.PCAP.PP.KD))
   colnames(WDIGDPPC2)<-c("iso3","GDPPC")
-  WDIGDPPC2<-as.data.frame(WDIGDPPC2)
+  WDIGDPPC2<-as.data.frame(WDIGDPPC2,stringsAsFactors=FALSE)
 
   WDIFDI1<-WDI::WDI(country="all",indicator = "BN.KLT.DINV.CD", start = YEAR, end=YEAR )
-  WDIFDI1<-as.data.frame(WDIFDI1)
+  WDIFDI1<-as.data.frame(WDIFDI1,stringsAsFactors=FALSE)
   WDIFDI1$iso3<-WD$iso3c[match(WDIFDI1$iso2c,WD$iso2c)]
   WDIFDI2<-cbind(as.vector(WDIFDI1$iso3),as.vector(WDIFDI1$BN.KLT.DINV.CD))
   colnames(WDIFDI2)<-c("iso3","FDI")
-  WDIFDI2<-as.data.frame(WDIFDI2)
+  WDIFDI2<-as.data.frame(WDIFDI2,stringsAsFactors=FALSE)
 
-  AggregatesList<-subset(CountryRegion, REGIONlist %in% "Aggregates")
+  ##Country Region is all countries and their regions
+  # This gives a full list of countries that are aggregates
+  #AggregatesList<-subset(CountryRegion, REGIONlist %in% "Aggregates")
+
+
+  ##Total Exports per country
   TotalCountryExports<-subset(FULLel,Receiver %in% "All")
+
+  #Grand Total Exports
   AllAllTotal<-as.matrix(subset(TotalCountryExports,Sender %in% "All"))
   GrandTotal<-as.numeric(AllAllTotal[,3])
-  if (is.numeric(isEmpty(GrandTotal))==FALSE){
-  GrandTotal<-sum(VAL)
-  }else GrandTotal<-GrandTotal
+
   Share<-list()
   for (i in 1:length(VAL)){
     Share[[i]]<-(VAL[i]/GrandTotal)*100
   }
+
   Share <-plyr::ldply(Share, data.frame)
-  Share<-dplyr::as_tibble(Share)
+  #Share<-dplyr::as_data_frame(Share)
   colnames(Share)<-"Share"
   FULLel<-cbind(FULLel,Share)
 
@@ -111,6 +119,8 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   igraph::V(G1)$id<-igraph::V(G1)$name
 
   CountryNames<-igraph::V(G1)$name
+
+  ## Adds an NA to any countries not cover in WDI data
   NotCovered<-subset(CountryNames,!(CountryNames %in% CountryRegion[,1]))
   NotCoveredWDI<-subset(CountryNames,!(CountryNames %in% WDIgdp2$iso3))
   mm<-matrix("NA",length(NotCovered),2)
@@ -150,29 +160,34 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
     GDPgrowthListAttr[[i]]<-subset(WDIGDPgrowth3,WDIGDPgrowth3$iso3 %in% CountryNames[i])
     FDIListAttr[[i]]<-subset(WDIFDI3,WDIFDI3$iso3 %in% CountryNames[i])
   }
+
   dfREG<-plyr::ldply(RegionListAttr, data.frame)
-  dfREG<-dplyr::as_tibble(dfREG)
+  #dfREG<-dplyr::as_data_frame(dfREG)
   dfINC<-plyr::ldply(IncomeListAttr,data.frame)
-  dfINC<-dplyr::as_tibble(dfINC)
+  #dfINC<-dplyr::as_data_frame(dfINC)
   dfGDP<-plyr::ldply(GDPListattr,data.frame)
-  dfGDP<-dplyr::as_tibble(dfGDP)
+  #dfGDP<-dplyr::as_data_frame(dfGDP)
   dfGDPPC<-plyr::ldply(GDPPCListattr, data.frame)
-  dfGDPPC<-dplyr::as_tibble(dfGDPPC)
+  #dfGDPPC<-dplyr::as_data_frame(dfGDPPC)
   dfGDPgrowth<-plyr::ldply(GDPgrowthListAttr, data.frame)
-  dfGDPgrowth<-dplyr::as_tibble(dfGDPgrowth)
+  #dfGDPgrowth<-dplyr::as_data_frame(dfGDPgrowth)
   dfFDI<-plyr::ldply(FDIListAttr, data.frame)
-  dfFDI<-dplyr::as_tibble(dfFDI)
+  #dfFDI<-dplyr::as_data_frame(dfFDI)
 
   target<-CountryNames
+
   dfREG<-dfREG[match(target,dfREG$COUNTRYlist),]
-  #
-  RR<-unlist(dfREG[,2])
-  RR2 <- as.factor(RR)
+  RR<-as.vector(dfREG[,2])
+  RR1<-c(RR)
+  RR1<-unlist(RR1)
+  RR2<-as.factor(RR1)
   H<-as.character(dfREG$REGIONlist)
 
   dfINC<-dfINC[match(target,dfINC$COUNTRYlist),]
-  KK<-unlist(dfINC[,2])
-  KK2<-as.factor(KK)
+  KK<-as.vector(dfINC[,2])
+  KK1<-c(KK)
+  KK1<-unlist(KK1)
+  KK2<-as.factor(KK1)
   U<-as.character(dfINC$INCOMElist)
 
   A<-levels(RR2)
@@ -186,16 +201,12 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   dfGDPgrowth<-dfGDPgrowth[match(target,dfGDPgrowth$iso3),]
   dfFDI<-dfFDI[match(target,dfFDI$iso3),]
 
-  GGDP<-unlist(dfGDP[,2])
+  GGDP<-as.vector(dfGDP[,2])
   GGDP<-suppressWarnings(as.numeric(GGDP))
-  GGDPPC<-unlist(dfGDPPC[,2])
+  GGDPPC<-as.vector(dfGDPPC[,2])
   GGDPPC<-suppressWarnings(as.numeric(GGDPPC))
   GGDPgrowth<-as.vector(dfGDPgrowth[,2])
-  GGDPgrowth<-GGDPgrowth$GDPgrowth
-  GGDPgrowth<-suppressWarnings(as.numeric(GGDPgrowth))
   GFDI<-as.vector(dfFDI[,2])
-  GFDI<-GFDI$FDI
-  GFDI<-suppressWarnings(as.numeric(GFDI))
 
   IH<-fastmatch::fmatch(KK,Ainc)
   CH<-fastmatch::fmatch(RR, A)
@@ -210,25 +221,57 @@ Comtradrclean<-function(DF,YEAR,threshold,cutoff){
   igraph::V(G1)$FDI<-GFDI
 
   #Delete Aggregated Vertices etc
-  KEY2<-as.data.frame(KEY)
-  NAcheck<-"NA" %in% KEY2$A
-  Aggrow<-as.data.frame(KEY2[KEY2$A=="Aggregates", ])
-  AggNumber<-as.numeric(as.vector(Aggrow$B))
-  if (NAcheck==TRUE){
-    NArow<-as.data.frame(KEY2[KEY2$A=="NA", ])
-    NANumber<-as.numeric(as.vector(NArow$B))
-    G2<-igraph::delete.vertices(G1, which(igraph::V(G1)$region==NANumber))
-    G3<-igraph::delete.vertices(G2, which(igraph::V(G2)$region==AggNumber))
+  #KEY2<-as.data.frame(KEY,stringsAsFactors=FALSE)
+  #NAcheck<-"NA" %in% KEY2$A
+  #Aggrow<-as.data.frame(KEY2[KEY2$A=="Aggregates", ])
+  #AggNumber<-as.numeric(as.vector(Aggrow$B))
 
-  } else G3<-G1
+  DEL_LIST<-subset(igraph::V(G1)$name,
+                   igraph::V(G1)$name %in% ALL_AGG)
+
+
+  G1<-igraph::delete_vertices(G1,c(DEL_LIST,"All"))
+  G3<-igraph::delete.vertices(G1, which(is.na(igraph::V(G1)$region)))
+  #if (NAcheck==TRUE){
+  #  NArow<-as.data.frame(KEY2[KEY2$A=="NA", ])
+  #  NANumber<-as.numeric(as.vector(NArow$B))
+  #  G2<-igraph::delete.vertices(G1, which(igraph::V(G1)$region==NANumber))
+  #  G3<-igraph::delete.vertices(G2, which(igraph::V(G2)$region==AggNumber))
+  #  G3<-igraph::delete.vertices(G2, which(is.na(igraph::V(G2)$region)))
+  #} else G3<-igraph::delete.vertices(G1, which(is.na(igraph::V(G1)$region)))
+
+  #G3<-igraph::delete.vertices(G2, which(igraph::V(G2)$regionNAME=="Aggregates"))
+
+  BACK_BONE_PREP<-igraph::get.data.frame(G3,what="vertices")
 
   #Apply the threshold/backbone
   if(threshold==TRUE){
     G4<-igraph::delete.edges(G3,which(igraph::E(G3)$weight<cutoff))
   }  else {
     G4<-get.backbone(G3,cutoff,TRUE)
+
+    BB_ID<-igraph::get.data.frame(G4,what="vertices")
+    BB_ATTR<-merge(BB_ID,BACK_BONE_PREP,by.all="name",all.x=TRUE,
+                   all.y=FALSE)
+
+    BB_ATTR<-BB_ATTR[order(match(BB_ATTR[, "name"],igraph::V(G4)$name)),]
+    igraph::V(G4)$region<-BB_ATTR$region
+    igraph::V(G4)$regionNAME<-BB_ATTR$regionNAME
+    igraph::V(G4)$income<-BB_ATTR$income
+    igraph::V(G4)$GDP<-BB_ATTR$GDP
+    igraph::V(G4)$GDPPC<-BB_ATTR$GDPPC
+    igraph::V(G4)$logGDP<-BB_ATTR$logGDP
+    igraph::V(G4)$logGDPPC<-BB_ATTR$logGDPPC
+    igraph::V(G4)$GDPgrowth<-BB_ATTR$GDPgrowth
+    igraph::V(G4)$FDI<-BB_ATTR$FDI
+    igraph::V(G4)$id<-BB_ATTR$id
+
   }
   G5<-igraph::delete.vertices(G4, which(igraph::degree(G4)==0))
-  return(G5)
-}
+  EW<-igraph::E(G5)$weight
+  EW2<-as.numeric(EW)
+  G6<-igraph::delete_edge_attr(G5,"weight")
+  igraph::E(G6)$weight<-EW2
 
+  return(G6)
+}

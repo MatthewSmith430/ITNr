@@ -42,7 +42,7 @@ WITSclean<-function(CSVfile,YEAR,threshold,cutoff){
   CountryIncome<-cbind(COUNTRYlist,INCOMElist)
 
   ##List all of the aggregate entities.
-  AggReg<-c("All","EUN","UNS","OAS","FRE",
+  AggReg<-c("All","EUN","UNS","OAS","FRE","BAT",
             "SPE","VAT","UMI","ATA","PCN","AIA","COK",
             "SHN","MSR","NIU",
             "BES","BLM","BUN","BVT","CCK","CXR","FLK",#Small regions
