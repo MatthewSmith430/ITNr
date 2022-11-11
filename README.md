@@ -7,33 +7,14 @@ ITNr - International Trade Network (ITN) analysis in R
 International trade data can be analysed using a network perspective, where the network is a set of countries linked by weighted and directed trade ties. This network is referred to by various names, the International Trade Network (ITN), World Trade Web (WTW) and the World Trade Network (WTN) etc.
 This package provides a number of functions for cleaning and processing international trade data into a network, and undertaking a set of relevant analysis.
 
-Packages
+Installation
 --------
 
-This package uses a number of other packages.
-
+This package can be installed with devtools. 
 ``` r
-library(igraph)
-library(dplyr)
-library(plyr)
-library(fastmatch)
-library(WDI)
-library(ggplot2)
-library(GGally)
-library(cowplot)
-library(intergraph)
-library(sna)
-library(xergm)
-library(ndtv)
-library(networkDynamic)
-library(tnet)
-library(blockmodeling)
-library(GoodmanKruskal)
-library(reshape2)
-
 #Install this package:
-#library(devtools)
-#devtools::install_github("MatthewSmith430/ITNr")
+library(devtools)
+devtools::install_github("MatthewSmith430/ITNr")
 
 library(ITNr)
 ```
