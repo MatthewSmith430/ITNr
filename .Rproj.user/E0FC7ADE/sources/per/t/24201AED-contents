@@ -1,0 +1,54 @@
+# ITNr 0.7.0
+The Comtradr function was updated and the make_trade_network function was added. 
+
+# ITNr 0.6.0
+Reduced dependence on `xergm.commom` in order to keep the package on CRAN.
+
+# ITNr 0.5.0
+E-I index analysis functions:  
+
+ * EI Network level  
+ 
+ * EI Group level  
+ 
+ * EI Individual Level  
+ 
+ * Mixing Matrix
+ 
+
+
+# ITNr 0.4.0
+
+* Minor function changes 
+
+
+# ITNr 0.3.0
+Changed so does not import ndtv or statnet
+
+
+# ITNr 0.2.0
+## Added Functions
+* core_periphery_weighted To identify whether nodes belong to the core/periphery in weighted directed/undirected networks.
+
+* ITN_map_plot Creates a plot where the ITN is layered onto a map
+
+* ITNcentrality_binary Calculates centrality measues for a binary network
+
+* isEmpty Returns NA if object is empty
+
+## Added Data
+* cap_lat_long The coordinates of capital cities - used in creating map plots.
+
+## Other Changes
+Corrected typos/infomation in documentation of the following functions:
+* Comtradr
+
+* ITNblock_plot
+
+* ITNcentrality
+
+* ITNdegdist
+
+* ITNimvex
+
+* RegionalBrokerage
