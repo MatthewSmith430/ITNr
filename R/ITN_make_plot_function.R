@@ -35,14 +35,14 @@ ITN_make_plot<-function(gs,LABEL,REGION){
                      color.legend = "Region",label = TRUE,
                      label.size = 2.5,edge.size = igraph::E(gs)$weight,
                      edge.color = c("color", "grey50"),arrow.size =5 )+
-        ggplot2::guides(size = FALSE)
+        ggplot2::guides(size = "none")
     }else{
       GGally::ggnet2(gNET,
                      node.size=WO*2,node.color = regionCOLOUR,color.palette = "Set1",
                      color.legend = "Region",
                      edge.size = igraph::E(gs)$weight,
                      edge.color = c("color", "grey50"),arrow.size =5 )+
-        ggplot2::guides(size = FALSE)
+        ggplot2::guides(size = "none")
 
     }
 
@@ -52,13 +52,13 @@ ITN_make_plot<-function(gs,LABEL,REGION){
                      size = WO*2,node.color = "#E41A1C",
                      label = TRUE,label.size = 2.5,edge.size = igraph::E(gs)$weight,
                      edge.color =  "grey50",arrow.size=5)+
-        ggplot2::guides(color = FALSE, size = FALSE)
+        ggplot2::guides(color = "none", size = "none")
     } else{
       GGally::ggnet2(gNET,
                      size = WO*2,node.color = "#E41A1C",
                      label = FALSE,edge.size = igraph::E(gs)$weight,
                      edge.color =  "grey50",arrow.size=5)+
-        ggplot2::guides(color = FALSE, size = FALSE)
+        ggplot2::guides(color = "none", size = "none")
     }
 
   }

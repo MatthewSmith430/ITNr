@@ -40,7 +40,7 @@ ITNblock_plot<-function(gs,LABEL){
                      color.legend = "Block",label = TRUE,
                      label.size = 2.5,edge.size = igraph::E(gs)$weight,
                      edge.color = "grey50",arrow.size =5 )+
-        ggplot2::guides(size = FALSE)
+        ggplot2::guides(size = "none")
 
       }
     else{
@@ -49,7 +49,7 @@ ITNblock_plot<-function(gs,LABEL){
                        color.legend = "Block",label=FALSE,
                        edge.size = igraph::E(gs)$weight,
                        edge.color ="grey50",arrow.size =5 )+
-          ggplot2::guides(size = FALSE)
+          ggplot2::guides(size = "none")
 
       }
     }
