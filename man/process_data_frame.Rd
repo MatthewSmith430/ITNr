@@ -4,13 +4,15 @@
 \alias{process_data_frame}
 \title{process_data_frame}
 \usage{
-process_data_frame(DF)
+process_data_frame(DF, YEAR)
 }
 \arguments{
 \item{DF}{edgelist with sender, receiver and value columns.}
+
+\item{YEAR}{year}
 }
 \value{
-Country neteork - igraph object
+Country network - igraph object
 }
 \description{
 This function tan edge lsit of countries, and adds attribute data. It creates a network with attributes.
